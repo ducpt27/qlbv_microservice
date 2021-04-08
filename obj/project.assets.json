@@ -5765,11 +5765,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\my-project\\ve_xe_service\\SERVICE.csproj",
+      "projectUniqueName": "D:\\Project\\my-project\\ve_xe_online_microservice\\SERVICE.csproj",
       "projectName": "SERVICE",
-      "projectPath": "D:\\Project\\my-project\\ve_xe_service\\SERVICE.csproj",
+      "projectPath": "D:\\Project\\my-project\\ve_xe_online_microservice\\SERVICE.csproj",
       "packagesPath": "C:\\Users\\Sapo\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\my-project\\ve_xe_service\\obj\\",
+      "outputPath": "D:\\Project\\my-project\\ve_xe_online_microservice\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Sapo\\AppData\\Roaming\\NuGet\\NuGet.Config"

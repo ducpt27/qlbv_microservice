@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/rRQMsWg08eHqbSENdTrTSQgP8GNcDnDXjZf0IBkxPBGxq8yonm8VmHjfe6CaJN6JoDIE+xPUOL/pZo7fxs9/g==",
+  "dgSpecHash": "kRdMWHa3C/PqlLYp+Afk/D4Lr9mC/GJ70g8PkQij022LqTUGdOLieDH3FeaE32xQM365vf+Q1Bz15i8uC21y2A==",
   "success": true,
-  "projectFilePath": "D:\\Project\\my-project\\ve_xe_service\\SERVICE.csproj",
+  "projectFilePath": "D:\\Project\\my-project\\ve_xe_online_microservice\\SERVICE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sapo\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.7\\microsoft.aspnet.cors.5.2.7.nupkg.sha512",
     "C:\\Users\\Sapo\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
