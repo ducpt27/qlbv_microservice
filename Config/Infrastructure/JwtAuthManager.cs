@@ -136,10 +136,10 @@ namespace VeXe.Config.Infrastructure
 
     public class JwtAuthResult
     {
-        [JsonPropertyName("accessToken")]
+        [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }
 
-        [JsonPropertyName("refreshToken")]
+        [JsonPropertyName("refresh_token")]
         public RefreshToken RefreshToken { get; set; }
     }
 
@@ -149,10 +149,10 @@ namespace VeXe.Config.Infrastructure
         public string UserName { get; set; }    // can be used for usage tracking
         // can optionally include other metadata, such as user agent, ip address, device name, and so on
 
-        [JsonPropertyName("tokenString")]
+        [JsonPropertyName("token_string")]
         public string TokenString { get; set; }
 
-        [JsonPropertyName("expireAt")]
+        [JsonPropertyName("expire_at")]
         public DateTime ExpireAt { get; set; }
     }
 }

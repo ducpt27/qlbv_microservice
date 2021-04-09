@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using VeXe.Config.Infrastructure;
 using VeXe.Service;
+using VeXe.Service.impl;
 
 namespace VeXe
 {
@@ -50,7 +51,7 @@ namespace VeXe
             });
             services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
             services.AddHostedService<JwtRefreshTokenCache>();
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<UserService, UserServiceImpl>();
 
             services.AddCors(options =>
             {

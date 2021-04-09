@@ -13,10 +13,10 @@ namespace VeXe.Config.Infrastructure
         [JsonPropertyName("audience")]
         public string Audience { get; set; }
 
-        [JsonPropertyName("accessTokenExpiration")]
+        [JsonPropertyName("access_token_expiration")]
         public int AccessTokenExpiration { get; set; }
 
-        [JsonPropertyName("refreshTokenExpiration")]
+        [JsonPropertyName("refresh_token_expiration")]
         public int RefreshTokenExpiration { get; set; }
     }
 }

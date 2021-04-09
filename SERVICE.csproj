@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Domain" />
-    <Folder Include="DTO\Request" />
-    <Folder Include="DTO\Response" />
     <Folder Include="Repository" />
   </ItemGroup>
 
