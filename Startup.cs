@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using VeXe.Config.Infrastructure;
-using VeXe.Services;
+using VeXe.Service;
 
 namespace VeXe
 {

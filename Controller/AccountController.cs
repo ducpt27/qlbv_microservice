@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using VeXe.Config.Infrastructure;
-using VeXe.Services;
+using VeXe.Service;
 
-namespace VeXe.Controllers
+namespace VeXe.Controller
 {
     [ApiController]
     [Authorize]

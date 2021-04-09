@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 
-namespace VeXe.Services
+namespace VeXe.Service
 {
     public interface IUserService
     {
