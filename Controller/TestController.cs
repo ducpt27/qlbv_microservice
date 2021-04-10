@@ -10,8 +10,9 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using VeXe.Config;
 using VeXe.Config.Infrastructure;
+using VeXe.Dto.Response;
 using VeXe.Service;
-using VeXe.Service.impl;
+using VeXe.Service.Impl;
 
 
 namespace VeXe.Controller
@@ -21,18 +22,33 @@ namespace VeXe.Controller
     [Route("api/[controller]")]
     public class TestController : ControllerBase
     {
+        private readonly ExampleService _exampleService;
+
+        public TestController(ExampleService exampleService)
+        {
+            _exampleService = exampleService;
+        }
+
         [HttpGet("abc")]
         [Authorize]
         public ActionResult Abc()
         {
-            return Ok("123 abc");
+            var data = _exampleService.getAbc("Duc");
+            return Ok(new BaseResp
+            {
+                Data = data
+            });
         }
 
         [HttpPost("abc")]
         [Authorize(Roles = UserRoles.Admin)]
         public ActionResult Xyz()
         {
-            return Ok("123 xyz");
+            var data = _exampleService.getInDbTest(1);
+            return Ok(new BaseResp
+            {
+                Data = data
+            });
         }
     }
 }

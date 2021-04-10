@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using VeXe.Config;
 
-namespace VeXe.Service.impl
+namespace VeXe.Service.Impl
 {
     public class UserServiceImpl : UserService
     {
@@ -11,9 +11,9 @@ namespace VeXe.Service.impl
 
         private readonly IDictionary<string, string> _users = new Dictionary<string, string>
         {
-            {"test1", "password1"},
-            {"test2", "password2"},
-            {"admin", "securePassword"}
+            {"test1", "ducpt"},
+            {"test2", "ducpt"},
+            {"admin", "admin"}
         };
 
         // inject your database here for user validation

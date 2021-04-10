@@ -8,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using VeXe.Config;
 using VeXe.Config.Infrastructure;
-using VeXe.DTO.Request;
-using VeXe.DTO.Response;
+using VeXe.Dto.Request;
+using VeXe.Dto.Response;
 using VeXe.Service;
-using VeXe.Service.impl;
+using VeXe.Service.Impl;
 
 namespace VeXe.Controller
 {

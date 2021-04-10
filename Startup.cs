@@ -7,9 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using MySqlConnector;
 using VeXe.Config.Infrastructure;
 using VeXe.Service;
-using VeXe.Service.impl;
+using VeXe.Service.Impl;
 
 namespace VeXe
 {
@@ -52,12 +53,15 @@ namespace VeXe
             services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
             services.AddHostedService<JwtRefreshTokenCache>();
             services.AddScoped<UserService, UserServiceImpl>();
+            services.AddScoped<ExampleService, ExampleServiceImpl>();
 
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
                     builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
             });
+                
+            services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["ConnectionStrings:Default"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
