@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace VeXe.DTO.Request
+namespace VeXe.Dto.Request
 {
     public class RefreshTokenReq
     {

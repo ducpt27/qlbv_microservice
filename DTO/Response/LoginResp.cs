@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace VeXe.DTO.Response
+namespace VeXe.Dto.Response
 {
     public class LoginResp
     {
