@@ -22,9 +22,9 @@ namespace VeXe.Controller
     [Route("api/[controller]")]
     public class TestController : ControllerBase
     {
-        private readonly ExampleService _exampleService;
+        private readonly IExampleService _exampleService;
 
-        public TestController(ExampleService exampleService)
+        public TestController(IExampleService exampleService)
         {
             _exampleService = exampleService;
         }
@@ -33,7 +33,7 @@ namespace VeXe.Controller
         [Authorize]
         public ActionResult Abc()
         {
-            var data = _exampleService.getAbc("Duc");
+            var data = _exampleService.GetAbc("Duc");
             return Ok(new BaseResp
             {
                 Data = data
@@ -44,7 +44,7 @@ namespace VeXe.Controller
         [Authorize(Roles = UserRoles.Admin)]
         public ActionResult Xyz()
         {
-            var data = _exampleService.getInDbTest(1);
+            var data = _exampleService.GetInDbTest(1);
             return Ok(new BaseResp
             {
                 Data = data

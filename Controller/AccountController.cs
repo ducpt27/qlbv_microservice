@@ -21,10 +21,10 @@ namespace VeXe.Controller
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
         private readonly IJwtAuthManager _jwtAuthManager;
 
-        public AccountController(ILogger<AccountController> logger, UserService userService, IJwtAuthManager jwtAuthManager)
+        public AccountController(ILogger<AccountController> logger, IUserService userService, IJwtAuthManager jwtAuthManager)
         {
             _logger = logger;
             _userService = userService;

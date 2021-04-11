@@ -1,6 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
+using VeXe.Service;
 
 namespace VeXe.Behaviours
 {
@@ -9,7 +11,7 @@ namespace VeXe.Behaviours
         private readonly ILogger _logger;
         private readonly ICurrentUserService _currentUserService;
 
-        public RequestLogger(ILogger<TRequest> logger, ICurrentUserService currentUserService)
+        public RequestLogger(ILogger logger, ICurrentUserService currentUserService)
         {
             _logger = logger;
             _currentUserService = currentUserService;
@@ -19,7 +21,7 @@ namespace VeXe.Behaviours
         {
             var name = typeof(TRequest).Name;
 
-            _logger.LogInformation("AspNetCoreSpa Request: {Name} {@UserId} {@Request}", 
+            _logger.LogInformation("Request: {Name} {@UserId} {@Request}", 
                 name, _currentUserService.UserId, request);
 
             return Task.CompletedTask;

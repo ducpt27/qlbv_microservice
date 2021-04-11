@@ -26,6 +26,7 @@ namespace VeXe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication();
             services.AddControllers();
 
             var jwtTokenConfig = Configuration.GetSection("jwtTokenConfig").Get<JwtTokenConfig>();
@@ -50,10 +51,6 @@ namespace VeXe
                     ClockSkew = TimeSpan.FromMinutes(1)
                 };
             });
-            services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
-            services.AddHostedService<JwtRefreshTokenCache>();
-            services.AddScoped<UserService, UserServiceImpl>();
-            services.AddScoped<ExampleService, ExampleServiceImpl>();
 
             services.AddCors(options =>
             {

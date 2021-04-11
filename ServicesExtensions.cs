@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
-using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using VeXe.Behaviours;
+using VeXe.Config.Infrastructure;
+using VeXe.Service;
+using VeXe.Service.Impl;
 
 namespace VeXe
 {
@@ -14,6 +16,11 @@ namespace VeXe
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
+            
+            services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
+            services.AddHostedService<JwtRefreshTokenCache>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IExampleService, ExampleService>();
 
             return services;
         }

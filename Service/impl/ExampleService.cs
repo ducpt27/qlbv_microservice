@@ -4,15 +4,15 @@ using MySqlConnector;
 
 namespace VeXe.Service.Impl
 {
-    public class ExampleServiceImpl : ExampleService
+    public class ExampleService : IExampleService
     {
         
-        public string getAbc(string xyz)
+        public string GetAbc(string xyz)
         {
             return "Hello " + xyz;
         }
 
-        public async Task<string> getInDbTest(int id)
+        public async Task<string> GetInDbTest(int id)
         {
             try
             {

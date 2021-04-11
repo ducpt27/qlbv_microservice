@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using FluentValidation;
+using MediatR;
 
 namespace VeXe.Behaviours
 {
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-        where TRequest : IRequest<TResponse>
+        where TRequest : IRequest
     {
-        private readonly IEnumerable<IValidator<TRequest>> _validators;
+        private readonly IEnumerable<IValidator> _validators;
 
         public RequestValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
         {

@@ -4,9 +4,9 @@ using VeXe.Config;
 
 namespace VeXe.Service.Impl
 {
-    public class UserServiceImpl : UserService
+    public class UserService : IUserService
     {
-        private readonly ILogger<UserService> _logger;
+        private readonly ILogger<IUserService> _logger;
 
 
         private readonly IDictionary<string, string> _users = new Dictionary<string, string>
@@ -17,7 +17,7 @@ namespace VeXe.Service.Impl
         };
 
         // inject your database here for user validation
-        public UserServiceImpl(ILogger<UserService> logger)
+        public UserService(ILogger<IUserService> logger)
         {
             _logger = logger;
         }
