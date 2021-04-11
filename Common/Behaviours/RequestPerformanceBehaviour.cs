@@ -5,7 +5,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using VeXe.Service;
 
-namespace VeXe.Behaviours
+namespace VeXe.Common.Behaviours
 {
     public class RequestPerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {

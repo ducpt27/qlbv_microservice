@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using VeXe.Config;
+using VeXe.Common;
 
 namespace VeXe.Service.Impl
 {

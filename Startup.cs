@@ -8,10 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
-using VeXe.Config.Infrastructure;
-using VeXe.Service;
-using VeXe.Service.Impl;
-
+using VeXe.Common.Infrastructure;
 namespace VeXe
 {
     public class Startup
@@ -26,8 +23,9 @@ namespace VeXe
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplication();
             services.AddControllers();
+            services.AddApplication();
+            services.AddPersistence(Configuration);
 
             var jwtTokenConfig = Configuration.GetSection("jwtTokenConfig").Get<JwtTokenConfig>();
             services.AddSingleton(jwtTokenConfig);
@@ -57,8 +55,6 @@ namespace VeXe
                 options.AddPolicy("AllowAll",
                     builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
             });
-                
-            services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["ConnectionStrings:Default"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

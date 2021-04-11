@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.IdentityModel.Tokens;
 
-namespace VeXe.Config.Infrastructure
+namespace VeXe.Common.Infrastructure
 {
     public interface IJwtAuthManager
     {

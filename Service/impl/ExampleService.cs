@@ -1,12 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MySqlConnector;
+using VeXe.Domain;
+using VeXe.DTO;
+using VeXe.Exceptions;
 
 namespace VeXe.Service.Impl
 {
     public class ExampleService : IExampleService
     {
         
+        private readonly IApplicationDbContext _context;
+
+        public ExampleService(IApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public string GetAbc(string xyz)
         {
             return "Hello " + xyz;
@@ -14,25 +24,13 @@ namespace VeXe.Service.Impl
 
         public async Task<string> GetInDbTest(int id)
         {
-            try
+            var entity = await _context.Abcs.FindAsync(id);
+            if (entity == null)
             {
-
-                await using var connection = new MySqlConnection();
-                await connection.OpenAsync();
-                await using var command = new MySqlCommand("SELECT name FROM user where id = 1;", connection);
-                await using var reader = await command.ExecuteReaderAsync();
-                var value = "";
-                while (await reader.ReadAsync())
-                {
-                    value = (string) reader.GetValue(0);
-                }
-
-                return value;
+                throw new NotFoundException(nameof(Abc), id);
             }
-            catch (Exception ex)
-            {
-                return "";
-            }
+
+            return entity.Name;
         }
     }
 }

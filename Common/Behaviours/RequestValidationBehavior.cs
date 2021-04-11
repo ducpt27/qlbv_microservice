@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 
-namespace VeXe.Behaviours
+namespace VeXe.Common.Behaviours
 {
     public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace VeXe.Config.Infrastructure
+namespace VeXe.Common.Infrastructure
 {
     public class JwtTokenConfig
     {

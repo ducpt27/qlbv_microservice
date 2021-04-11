@@ -4,7 +4,7 @@ using MediatR.Pipeline;
 using Microsoft.Extensions.Logging;
 using VeXe.Service;
 
-namespace VeXe.Behaviours
+namespace VeXe.Common.Behaviours
 {
     public class RequestLogger<TRequest> : IRequestPreProcessor<TRequest>
     {
