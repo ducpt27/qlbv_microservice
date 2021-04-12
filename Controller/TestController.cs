@@ -26,31 +26,24 @@ namespace VeXe.Controller
     public class TestController : ControllerBase
     {
         private readonly IExampleService _exampleService;
-        private IApplicationDbContext _dbContext;  
 
-        public TestController(IExampleService exampleService, IApplicationDbContext dbContext)
+        public TestController(IExampleService exampleService)
         {
             _exampleService = exampleService;
-            _dbContext = dbContext;
         }
 
-        [HttpGet("abc")]
+        [HttpGet]
         [Authorize]
-        public ActionResult Abc()
+        public async Task<ActionResult> GetList()
         {
-            var data = _exampleService.GetAbc("Duc");
-            return Ok(this._dbContext.Abcs.ToList());  
+            return Ok(await _exampleService.GetList());  
         }
 
-        [HttpPost("abc")]
+        [HttpGet("{id}")]
         [Authorize(Roles = UserRoles.Admin)]
-        public ActionResult Xyz()
+        public async Task<ActionResult> GetOne(int id)
         {
-            var data = _exampleService.GetInDbTest(1);
-            return Ok(new BaseResp
-            {
-                Data = data
-            });
+            return Ok(await _exampleService.GetOne(id));
         }
     }
 }

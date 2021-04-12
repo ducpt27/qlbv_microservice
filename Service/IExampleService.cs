@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using VeXe.Domain;
+using VeXe.DTO;
 
 namespace VeXe.Service
 {
     public interface IExampleService
     {
-        string GetAbc(string xyz);
+        Task<List<AbcDto>> GetList();
 
-        Task<string> GetInDbTest(int id);
+        Task<AbcDto> GetOne(int id);
     }
 }

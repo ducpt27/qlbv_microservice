@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Microsoft.EntityFrameworkCore;
 using MySqlConnector;
 using VeXe.Domain;
 using VeXe.DTO;
@@ -11,18 +16,23 @@ namespace VeXe.Service.Impl
     {
         
         private readonly IApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public ExampleService(IApplicationDbContext context)
+        public ExampleService(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        public string GetAbc(string xyz)
+        public async Task<List<AbcDto>> GetList()
         {
-            return "Hello " + xyz;
+            var data = await _context.Abcs
+                .ProjectTo<AbcDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+            return data;
         }
 
-        public async Task<string> GetInDbTest(int id)
+        public async Task<AbcDto> GetOne(int id)
         {
             var entity = await _context.Abcs.FindAsync(id);
             if (entity == null)
@@ -30,7 +40,7 @@ namespace VeXe.Service.Impl
                 throw new NotFoundException(nameof(Abc), id);
             }
 
-            return entity.Name;
+            return _mapper.Map<AbcDto>(entity);
         }
     }
 }

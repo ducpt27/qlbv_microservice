@@ -13,7 +13,7 @@ namespace VeXe.Exceptions
             Failures = new Dictionary<string, string[]>();
         }
 
-        public ValidationException(List<ValidationFailure> failures)
+        public ValidationException(IReadOnlyCollection<ValidationFailure> failures)
             : this()
         {
             var propertyNames = failures
