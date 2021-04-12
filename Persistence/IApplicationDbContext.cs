@@ -4,7 +4,7 @@ using VeXe.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace VeXe.DTO
+namespace VeXe.Persistence
 {
     public interface IApplicationDbContext
     {
