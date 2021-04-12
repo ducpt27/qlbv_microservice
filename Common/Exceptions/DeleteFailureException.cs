@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace VeXe.Exceptions
+namespace VeXe.Common.Exceptions
 {
     public class DeleteFailureException : Exception
     {

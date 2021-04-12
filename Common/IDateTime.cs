@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AspNetCoreSpa.Common
+namespace VeXe.Common
 {
     public interface IDateTime
     {

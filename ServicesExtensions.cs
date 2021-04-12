@@ -1,12 +1,11 @@
 ﻿using System.Reflection;
-using AspNetCoreSpa.Common;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VeXe.Common;
 using VeXe.Common.Behaviours;
 using VeXe.Common.Infrastructure;
-using VeXe.DTO;
 using VeXe.Persistence;
 using VeXe.Service;
 using VeXe.Service.impl;

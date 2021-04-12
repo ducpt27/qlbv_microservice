@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace VeXe.Mapping
+namespace VeXe.Common.Mapping
 {
     public interface IMapFrom<T>
     {   

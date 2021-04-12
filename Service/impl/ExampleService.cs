@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using VeXe.Common.Exceptions;
 using VeXe.Domain;
 using VeXe.DTO;
-using VeXe.Exceptions;
 using VeXe.Persistence;
 
 namespace VeXe.Service.Impl

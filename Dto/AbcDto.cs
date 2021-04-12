@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Newtonsoft.Json;
+using VeXe.Common.Mapping;
 using VeXe.Domain;
-using VeXe.Mapping;
 
 namespace VeXe.DTO
 {

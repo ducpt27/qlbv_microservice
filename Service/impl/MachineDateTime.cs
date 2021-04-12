@@ -1,5 +1,5 @@
 ﻿using System;
-using AspNetCoreSpa.Common;
+using VeXe.Common;
 
 namespace VeXe.Service.impl
 {

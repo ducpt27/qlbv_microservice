@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using AutoMapper;
 
-namespace VeXe.Mapping
+namespace VeXe.Common.Mapping
 {
     public class MappingProfile : Profile
     {
