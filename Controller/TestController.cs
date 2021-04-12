@@ -11,7 +11,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using VeXe.Common;
 using VeXe.Common.Infrastructure;
-using VeXe.Common.Persistence;
 using VeXe.DTO;
 using VeXe.Dto.Response;
 using VeXe.Service;

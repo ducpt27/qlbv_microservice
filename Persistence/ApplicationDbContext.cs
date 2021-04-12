@@ -6,7 +6,7 @@ using VeXe.Domain;
 using VeXe.DTO;
 using VeXe.Service;
 
-namespace VeXe.Common.Persistence
+namespace VeXe.Persistence
 {
     public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
