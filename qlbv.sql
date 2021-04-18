@@ -975,7 +975,7 @@ DROP TABLE IF EXISTS `route_point`;
 CREATE TABLE IF NOT EXISTS `route_point` (
   `route_id` int(11) NOT NULL,
   `point_id` int(11) NOT NULL,
-  KEY `I_ROUTE_01` (`route_id`),
+  PRIMARY KEY (`route_id`,`point_id`),
   KEY `I_POINT_01` (`point_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
