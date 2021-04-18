@@ -27,7 +27,9 @@ namespace VeXe
             services.AddHostedService<JwtRefreshTokenCache>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IExampleService, ExampleService>();
-
+            services.AddScoped<IRouteService, RouteService>();
+            // services.AddScoped<IPointService, PointService>();
+            services.AddScoped<ICarService, CarService>();
             return services;
         }
         

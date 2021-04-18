@@ -25,7 +25,13 @@ namespace VeXe.Persistence
             _dateTime = dateTime;
         }
         public DbSet<Abc> Abcs { get; set; }
+        public DbSet<Route> Route { get; set; }
+        public DbSet<Point> Points { get; set; }
 
+        public DbSet<Car> Cars { get; set; }
+
+
+    
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
@@ -49,7 +55,15 @@ namespace VeXe.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+            modelBuilder.Entity<Route>()
+                .HasMany<Point>(r => r.Points)
+                .WithMany(s => s.Routes)
+                .
         }
+        
+        
+        
     }
 }
+
 
