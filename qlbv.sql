@@ -881,9 +881,12 @@ CREATE TABLE IF NOT EXISTS `point` (
   `ward_id` int(11) NOT NULL,
   `lat` decimal(10,6) DEFAULT NULL,
   `lng` decimal(10,6) DEFAULT NULL,
-  `position` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `point` (`id`, `street`, `province_id`, `district_id`, `ward_id`, `lat`, `lng`) VALUES
+(1, 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL),
+(2, 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL);
 
 DROP TABLE IF EXISTS `province`;
 CREATE TABLE IF NOT EXISTS `province` (
@@ -961,7 +964,7 @@ INSERT INTO `province` (`id`, `name`, `code`) VALUES
 DROP TABLE IF EXISTS `route`;
 CREATE TABLE IF NOT EXISTS `route` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `origin_id` int(11) NOT NULL,
+  `origin_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -969,15 +972,52 @@ CREATE TABLE IF NOT EXISTS `route` (
   `modified_on` timestamp NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `route` (`id`, `origin_id`, `name`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(1, 1, 'Tuyến số 01', 1, '2021-04-19 15:39:36', 'admin', '2021-04-19 15:39:36', 'admin'),
+(2, 0, 'A', 0, '2021-04-19 15:46:36', '00000000-0000-0000-0000-000000000000', NULL, NULL),
+(3, 0, 'A', 0, '2021-04-19 15:58:24', 'admin', NULL, NULL),
+(4, 0, 'A', 0, '2021-04-19 16:21:47', 'admin', NULL, NULL),
+(5, 0, 'A', 0, '2021-04-19 16:28:15', 'admin', NULL, NULL),
+(6, 0, 'A', 0, '2021-04-19 16:36:09', 'admin', NULL, NULL),
+(7, 0, 'A', 0, '2021-04-19 16:37:14', 'admin', NULL, NULL),
+(8, 0, 'A', 0, '2021-04-19 16:38:52', 'admin', NULL, NULL),
+(9, 0, 'A', 0, '2021-04-19 16:43:27', 'admin', NULL, NULL),
+(10, 0, 'A', 0, '2021-04-19 16:45:20', 'admin', NULL, NULL),
+(11, 0, 'A', 0, '2021-04-19 16:46:05', 'admin', NULL, NULL),
+(12, 0, 'A', 0, '2021-04-19 16:46:10', 'admin', NULL, NULL),
+(13, 0, 'A', 0, '2021-04-19 17:14:42', 'admin', NULL, NULL),
+(14, 0, 'A', 0, '2021-04-19 17:17:01', 'admin', NULL, NULL),
+(15, 0, 'A', 0, '2021-04-19 17:20:23', 'admin', NULL, NULL),
+(16, 0, 'A', 0, '2021-04-19 17:21:28', 'admin', NULL, NULL),
+(17, 0, 'A', 0, '2021-04-19 17:22:00', 'admin', NULL, NULL),
+(18, 0, 'A', 0, '2021-04-19 17:23:18', 'admin', NULL, NULL),
+(19, 19, 'A', 0, '2021-04-19 17:27:36', 'admin', '2021-04-19 17:27:36', 'admin'),
+(20, 20, 'A', 0, '2021-04-19 17:30:30', 'admin', '2021-04-19 17:30:31', 'admin'),
+(21, 0, 'A', 0, '2021-04-19 17:30:34', 'admin', NULL, NULL),
+(22, 0, 'A', 0, '2021-04-19 17:32:20', 'admin', NULL, NULL),
+(23, 23, 'A', 0, '2021-04-19 17:32:30', 'admin', '2021-04-19 17:32:30', 'admin'),
+(24, 0, 'A', 0, '2021-04-19 17:32:35', 'admin', NULL, NULL),
+(25, 0, 'A', 0, '2021-04-19 17:33:59', 'admin', NULL, NULL),
+(26, 0, 'A', 0, '2021-04-19 17:38:58', 'admin', NULL, NULL);
 
 DROP TABLE IF EXISTS `route_point`;
 CREATE TABLE IF NOT EXISTS `route_point` (
   `route_id` int(11) NOT NULL,
   `point_id` int(11) NOT NULL,
+  `position` int(11) DEFAULT NULL,
   PRIMARY KEY (`route_id`,`point_id`),
   KEY `I_POINT_01` (`point_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `route_point` (`route_id`, `point_id`, `position`) VALUES
+(1, 1, 0),
+(1, 2, 1),
+(19, 2, 0),
+(20, 2, 0),
+(23, 1, 0),
+(23, 2, 0);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
