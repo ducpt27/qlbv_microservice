@@ -10,9 +10,9 @@ namespace VeXe.Persistence
     {
         DbSet<Abc> Abcs { get; set; }
         
-        DbSet<Route> Route { get; set; }
-        
+        DbSet<Route> Routes { get; set; }
         DbSet<Point> Points { get; set; }
+        DbSet<RoutePoint> RoutePoints { get; set; }
         DbSet<Car> Cars { get; set; }
         DatabaseFacade Database { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);

@@ -1,36 +1,32 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VeXe.Dto.Request;
-using VeXe.Service;
 
 namespace VeXe.Controller
 {
-    
-    [ApiController]
-    [Authorize]
-    [Route("api/[controller]")]
-    public class RouteController : ControllerBase
+    public class RouteController : BaseController
     {
-        private readonly IRouteService _routeService;
 
-        public RouteController(IRouteService routeService)
-        {
-            _routeService = routeService;
-        }
-        
         [HttpGet]
         [Authorize]
         public async Task<ActionResult> GetList()
         {
-            return Ok(await _routeService.GetList());  
+            var vm = await Mediator.Send(new RoutesFilterReq());
+
+            return Ok(vm);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> AddOne([FromBody] RouteReq request)
+        public async Task<ActionResult> AddOne([FromBody] RouteReq routeReq)
         {
-            return Ok(request);  
+            var vm = await Mediator.Send(routeReq);
+
+            return Ok(vm);
         }
     }
 }
+     

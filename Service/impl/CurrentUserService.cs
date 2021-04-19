@@ -4,16 +4,15 @@ using Microsoft.AspNetCore.Http;
 
 namespace VeXe.Service.impl
 {
-    public class CurrentUserServiceImpl : ICurrentUserService
+    public class CurrentUserService : ICurrentUserService
     {
-        public CurrentUserServiceImpl(IHttpContextAccessor httpContextAccessor)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
-            Guid.TryParse(httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier), out var userId);
-            UserId = userId;
-            IsAuthenticated = UserId != default;
+            Username = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email);
+            IsAuthenticated = Username != default;
         }
 
-        public Guid UserId { get; }
+        public string Username { get; }
 
         public bool IsAuthenticated { get; }
     }

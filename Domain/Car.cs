@@ -12,7 +12,7 @@ namespace VeXe.Domain
         [Column("origin_id")]
         public int OriginId { get; set; }
         
-        public string name { get; set; }
+        public string Name { get; set; }
         
         [Column("total_chairs")]
         public int TotalChairs { get; set; }
@@ -26,7 +26,7 @@ namespace VeXe.Domain
         [Column("total_cols")]
         public int TotalCols { get; set; }
 
-        public string note { get; set; }
+        public string Note { get; set; }
         
     }
 }

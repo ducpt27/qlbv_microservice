@@ -37,6 +37,10 @@ namespace VeXe.Common.Infrastructure.Middlewares
 
             switch (exception)
             {
+                case BadRequestException badRequestException:
+                    code = HttpStatusCode.BadRequest;
+                    result = JsonConvert.SerializeObject(badRequestException);
+                    break;
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
                     result = JsonConvert.SerializeObject(validationException.Failures);

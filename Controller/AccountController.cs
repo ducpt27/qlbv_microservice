@@ -49,6 +49,7 @@ namespace VeXe.Controller
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name,request.UserName),
+                new Claim(ClaimTypes.Email,request.UserName),
                 new Claim(ClaimTypes.Role, role)
             };
 
@@ -69,8 +70,7 @@ namespace VeXe.Controller
             return Ok(new LoginResp
             {
                 UserName = User.Identity?.Name,
-                Role = User.FindFirst(ClaimTypes.Role)?.Value ?? string.Empty,
-                OriginalUserName = User.FindFirst("original_userName")?.Value
+                Role = User.FindFirst(ClaimTypes.Role)?.Value ?? string.Empty
             });
         }
 
@@ -119,8 +119,6 @@ namespace VeXe.Controller
         [Authorize(Roles = UserRoles.Admin)]
         public ActionResult Impersonate([FromBody] ImpersonationRequest request)
         {
-            var userName = User.Identity?.Name;
-
             var impersonatedRole = _userService.GetUserRole(request.UserName);
             if (string.IsNullOrWhiteSpace(impersonatedRole))
             {
@@ -134,8 +132,7 @@ namespace VeXe.Controller
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name,request.UserName),
-                new Claim(ClaimTypes.Role, impersonatedRole),
-                new Claim("OriginalUserName", userName ?? string.Empty)
+                new Claim(ClaimTypes.Role, impersonatedRole)
             };
 
             var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
@@ -143,7 +140,6 @@ namespace VeXe.Controller
             {
                 UserName = request.UserName,
                 Role = impersonatedRole,
-                OriginalUserName = userName,
                 AccessToken = jwtResult.AccessToken,
                 RefreshToken = jwtResult.RefreshToken.TokenString
             });
@@ -152,26 +148,24 @@ namespace VeXe.Controller
         [HttpPost("stop-impersonation")]
         public ActionResult StopImpersonation()
         {
-            var userName = User.Identity?.Name;
-            var originalUserName = User.FindFirst("OriginalUserName")?.Value;
-            if (string.IsNullOrWhiteSpace(originalUserName))
+            var username = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (string.IsNullOrWhiteSpace(username))
             {
                 return BadRequest("You are not impersonating anyone.");
             }
 
-            var role = _userService.GetUserRole(originalUserName);
+            var role = _userService.GetUserRole(username);
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name,originalUserName),
+                new Claim(ClaimTypes.Name,username),
                 new Claim(ClaimTypes.Role, role)
             };
 
-            var jwtResult = _jwtAuthManager.GenerateTokens(originalUserName, claims, DateTime.Now);
+            var jwtResult = _jwtAuthManager.GenerateTokens(username, claims, DateTime.Now);
             return Ok(new LoginResp
             {
-                UserName = originalUserName,
+                UserName = username,
                 Role = role,
-                OriginalUserName = null,
                 AccessToken = jwtResult.AccessToken,
                 RefreshToken = jwtResult.RefreshToken.TokenString
             });

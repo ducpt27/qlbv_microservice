@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using MediatR;
 using VeXe.DTO;
 
 namespace VeXe.Dto.Request
 {
-    public class RouteReq
+    public class RouteReq : IRequest<RouteDto>
     {
         [Required]
         [JsonPropertyName("name")]
@@ -18,7 +20,6 @@ namespace VeXe.Dto.Request
         [JsonPropertyName("origin_id")]
         public int OriginId { get; set; }
         
-        [JsonPropertyName("points")]
-        public List<PointDto> Points  { get; set; }
+        public int[] PointIds  { get; set; }
     }
 }

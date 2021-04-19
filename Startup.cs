@@ -10,6 +10,8 @@ using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
 using VeXe.Common.Infrastructure;
 using VeXe.Common.Infrastructure.Middlewares;
+using VeXe.Service;
+using VeXe.Service.impl;
 
 namespace VeXe
 {

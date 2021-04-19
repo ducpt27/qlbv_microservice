@@ -33,8 +33,8 @@ namespace VeXe.Common.Behaviours
             {
                 var name = typeof(TRequest).Name;
 
-                _logger.LogWarning("AspNetCoreSpa Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}", 
-                    name, _timer.ElapsedMilliseconds, _currentUserService.UserId, request);
+                _logger.LogWarning("==> Request performance: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}", 
+                    name, _timer.ElapsedMilliseconds, _currentUserService.Username, request);
             }
 
             return response;

@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
+using VeXe.Domain;
+using VeXe.DTO;
 
 namespace VeXe.Common.Mapping
 {
@@ -10,6 +12,7 @@ namespace VeXe.Common.Mapping
         public MappingProfile()
         {
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
+            CreateMap<Route, RouteDto>();
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)

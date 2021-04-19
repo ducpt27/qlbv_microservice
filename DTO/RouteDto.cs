@@ -1,8 +1,8 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using Newtonsoft.Json;
 using VeXe.Common.Mapping;
 using VeXe.Domain;
-
 
 namespace VeXe.DTO
 {
@@ -24,6 +24,9 @@ namespace VeXe.DTO
         public string ModifiedBy { get; set; }
         [JsonProperty(PropertyName = "modified_on")]
         public string ModifiedOn { get; set; }
+        
+        [JsonProperty(PropertyName = "route_points")]
+        public IList<RoutePointDto> RoutePoints { get; set; }
         
         public void Mapping(Profile profile)
         {

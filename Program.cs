@@ -1,8 +1,13 @@
 using System;
 using System.Security.Authentication;
+using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using VeXe.Persistence;
 
 namespace VeXe
 {
@@ -10,7 +15,8 @@ namespace VeXe
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host =CreateHostBuilder(args).Build();
+            host.Run();
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args) =>

@@ -23,9 +23,7 @@ namespace VeXe.Domain
         [Column("ward_id")]
         public int WardId { get; set; }
         
-        public int Position { get; set; }
-        
-        public virtual ICollection<Route> Routes { get; set; }
+        public IList<RoutePoint> RoutePoints { get; set; }
         
     }
 }

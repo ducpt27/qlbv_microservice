@@ -19,8 +19,6 @@ namespace VeXe.DTO
         public int DistrictId { get; set; }
         [JsonProperty(PropertyName = "ward_id")]
         public int WardId { get; set; }
-        [JsonProperty(PropertyName = "position")]
-        public int Position { get; set; }
         
         public void Mapping(Profile profile)
         {
