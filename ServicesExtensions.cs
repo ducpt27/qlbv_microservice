@@ -31,7 +31,6 @@ namespace VeXe
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddHostedService<JwtRefreshTokenCache>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IExampleService, ExampleService>();
             var serviceProvider = services.BuildServiceProvider();
             var logger = serviceProvider.GetService<ILogger<object>>();
             services.AddSingleton(typeof(ILogger), logger);

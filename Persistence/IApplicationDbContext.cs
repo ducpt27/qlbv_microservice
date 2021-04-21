@@ -8,8 +8,6 @@ namespace VeXe.Persistence
 {
     public interface IApplicationDbContext
     {
-        DbSet<Abc> Abcs { get; set; }
-        
         DbSet<Route> Routes { get; set; }
         DbSet<Point> Points { get; set; }
         DbSet<RoutePoint> RoutePoints { get; set; }

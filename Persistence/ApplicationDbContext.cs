@@ -25,7 +25,6 @@ namespace VeXe.Persistence
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
-        public DbSet<Abc> Abcs { get; set; }
         public DbSet<Route> Routes { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
