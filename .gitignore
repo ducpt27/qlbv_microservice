@@ -380,3 +380,4 @@ ASALocalRun/
 .mfractor/
 
 CSharpLabs/RunExeFromWebApi/WebApi/App_Data/
+SERVICE.csproj
