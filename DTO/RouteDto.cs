@@ -8,10 +8,6 @@ namespace VeXe.DTO
 {
     public class RouteDto : IMapFrom<Route>
     {
-        public RouteDto()
-        {
-        }
-
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
         [JsonProperty(PropertyName = "name")]

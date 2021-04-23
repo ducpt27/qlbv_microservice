@@ -3,14 +3,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
 using VeXe.Domain;
-using VeXe.DTO.Request.Route;
+using VeXe.Dto.Request;
 using VeXe.Persistence;
 
 namespace VeXe.DTO.Request.Handler
 {
-    public class AddRouteHandler : IRequestHandler<AddRouteReq, RouteDto>
+    public class AddRouteHandler : IRequestHandler<RouteReq, RouteDto>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
@@ -21,9 +22,9 @@ namespace VeXe.DTO.Request.Handler
             _mapper = mapper;
         }
 
-        public async Task<RouteDto> Handle(AddRouteReq request, CancellationToken cancellationToken)
+        public async Task<RouteDto> Handle(RouteReq request, CancellationToken cancellationToken)
         {
-            var route = new Domain.Route()
+            var route = new Route()
             {
                 Name = request.Name,
                 Status = request.Status,

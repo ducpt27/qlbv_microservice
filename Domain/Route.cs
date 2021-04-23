@@ -3,12 +3,11 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using VeXe.Common.Mapping;
 using VeXe.Dto.Request;
-using VeXe.DTO.Request.Route;
 
 namespace VeXe.Domain
 {
     [Table("route")]
-    public class Route :AuditableEntity, IMapFrom<AddRouteReq>, IMapFrom<EditRouteReq>
+    public class Route :AuditableEntity, IMapFrom<RouteReq>
     {
         [Key]
         public int Id { get; set; }
