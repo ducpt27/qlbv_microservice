@@ -1,7 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
 using MediatR;
 using Newtonsoft.Json;
+using VeXe.Common.Exceptions;
+using VeXe.Persistence;
 
 namespace VeXe.DTO.Request.Car
 {
@@ -23,16 +26,39 @@ namespace VeXe.DTO.Request.Car
         public int TotalCols { get; set; }
         [JsonProperty(PropertyName = "note")]
         public string Note { get; set; }
+        [JsonProperty(PropertyName = "status")]
+        public int Status { get; set; }
         
         public class EditCarHandler: IRequestHandler<EditCarReq, CarDto>
         {
-            public EditCarHandler()
+            private readonly IApplicationDbContext _context;
+            private readonly IMapper _mapper;
+
+            public EditCarHandler(IApplicationDbContext context, IMapper mapper)
             {
+                _context = context;
+                _mapper = mapper;
             }
 
-            public Task<CarDto> Handle(EditCarReq request, CancellationToken cancellationToken)
+
+            public async Task<CarDto> Handle(EditCarReq request, CancellationToken cancellationToken)
             {
-                throw new System.NotImplementedException();
+                var entity = await _context.Cars
+                    .FindAsync(request.Id);
+
+                if (entity == null)
+                {
+                    throw new NotFoundException(nameof(Car), request.Id);
+                }
+
+                entity.Name = request.Name;
+                entity.Status = request.Status;
+                entity.Note = request.Note;
+                entity.OriginId = request.OriginId;
+                
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return _mapper.Map<CarDto>(entity);
             }
         }
     }
