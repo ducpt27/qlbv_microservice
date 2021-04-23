@@ -27,10 +27,12 @@ CREATE TABLE IF NOT EXISTS `car` (
   `modified_on` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `car` (`id`, `origin_id`, `name`, `total_chairs`, `total_floors`, `total_rows`, `total_cols`, `note`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
-(1, 1, 'Test', 2, 2, 5, 5, 'abc xyz', 1, '2021-04-23 15:02:41', 'admin', '2021-04-23 15:22:28', 'admin');
+(1, 1, 'Test', 2, 2, 5, 5, 'abc xyz', 1, '2021-04-23 15:02:41', 'admin', '2021-04-23 15:22:28', 'admin'),
+(2, 2, 'Test 2', 3, 1, 8, 5, 'Ghi chu o day', 0, '2021-04-23 15:30:43', 'admin', '2021-04-23 15:30:43', 'admin'),
+(3, 3, 'Test 2', 3, 1, 8, 5, 'Ghi chu o day', 1, '2021-04-23 15:30:57', 'admin', '2021-04-23 15:30:57', 'admin');
 
 DROP TABLE IF EXISTS `chair`;
 CREATE TABLE IF NOT EXISTS `chair` (
@@ -41,12 +43,18 @@ CREATE TABLE IF NOT EXISTS `chair` (
   `floor` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `I_3` (`car_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `chair` (`id`, `car_id`, `row`, `col`, `floor`) VALUES
 (1, 1, 1, 2, b'0'),
 (2, 1, 3, 3, b'0'),
-(3, 1, 2, 4, b'1');
+(3, 1, 2, 4, b'1'),
+(4, 2, 1, 2, b'0'),
+(5, 2, 3, 3, b'0'),
+(6, 2, 2, 4, b'1'),
+(7, 3, 1, 2, b'0'),
+(8, 3, 3, 3, b'0'),
+(9, 3, 2, 4, b'1');
 
 DROP TABLE IF EXISTS `chair_schedule`;
 CREATE TABLE IF NOT EXISTS `chair_schedule` (
@@ -890,12 +898,17 @@ CREATE TABLE IF NOT EXISTS `point` (
   `ward_id` int(11) NOT NULL,
   `lat` decimal(10,6) DEFAULT NULL,
   `lng` decimal(10,6) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
+  `created_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `modified_on` timestamp NULL DEFAULT NULL,
+  `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `point` (`id`, `street`, `province_id`, `district_id`, `ward_id`, `lat`, `lng`) VALUES
-(1, 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL),
-(2, 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL);
+INSERT INTO `point` (`id`, `street`, `province_id`, `district_id`, `ward_id`, `lat`, `lng`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(1, 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL, 1, '2021-04-23 15:36:23', 'admin', '2021-04-22 17:00:00', 'admin'),
+(2, 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL, 1, '2021-04-23 15:36:26', 'admin', '2021-04-22 17:00:00', 'admin');
 
 DROP TABLE IF EXISTS `province`;
 CREATE TABLE IF NOT EXISTS `province` (
