@@ -30,6 +30,9 @@ namespace VeXe.Domain
         [Column("note")]
         public string Note { get; set; }
         
+        [Column("status")]
+        public int Status { get; set; }
+        
         public IList<Chair> Chairs { get; set; } 
     }
 }

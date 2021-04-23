@@ -8,9 +8,9 @@ namespace VeXe.DTO
     public class ChairDto : IMapFrom<Chair>
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [JsonProperty(PropertyName = "car_id")]
-        public int CarId { get; set; }
+        public int? CarId { get; set; }
         [JsonProperty(PropertyName = "row")]
         public int Row { get; set; } 
         [JsonProperty(PropertyName = "col")]

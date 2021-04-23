@@ -25,6 +25,8 @@ namespace VeXe.DTO
         public int TotalRows { get; set; }
         [JsonProperty(PropertyName = "total_cols")]
         public int TotalCols { get; set; }
+        [JsonProperty(PropertyName = "status")]
+        public int Status { get; set; }
         [JsonProperty(PropertyName = "created_by")]
         public string CreatedBy { get; set; }
         [JsonProperty(PropertyName = "created_on")]

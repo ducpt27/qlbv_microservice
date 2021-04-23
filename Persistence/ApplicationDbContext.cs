@@ -26,6 +26,7 @@ namespace VeXe.Persistence
             _dateTime = dateTime;
         }
         public DbSet<Route> Routes { get; set; }
+        public DbSet<Chair> Chairs { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
 
