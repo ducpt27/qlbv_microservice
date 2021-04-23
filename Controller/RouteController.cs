@@ -28,7 +28,7 @@ namespace VeXe.Controller
         }
         [HttpPut]
         [Authorize]
-        [Route("/{id:int}")]
+        [Route("{id}")]
         public async Task<ActionResult> EditOne(int id, [FromBody] EditRouteReq req)
         {
             req.Id = id;
