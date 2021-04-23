@@ -892,6 +892,7 @@ CREATE TABLE IF NOT EXISTS `order_item` (
 DROP TABLE IF EXISTS `point`;
 CREATE TABLE IF NOT EXISTS `point` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `province_id` int(11) NOT NULL,
   `district_id` int(11) NOT NULL,
@@ -906,9 +907,9 @@ CREATE TABLE IF NOT EXISTS `point` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-INSERT INTO `point` (`id`, `street`, `province_id`, `district_id`, `ward_id`, `lat`, `lng`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
-(1, 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL, 1, '2021-04-23 15:36:23', 'admin', '2021-04-22 17:00:00', 'admin'),
-(2, 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL, 1, '2021-04-23 15:36:26', 'admin', '2021-04-22 17:00:00', 'admin');
+INSERT INTO `point` (`id`, `name`, `street`, `province_id`, `district_id`, `ward_id`, `lat`, `lng`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(1, 'Bến xe mỹ đình', 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL, 1, '2021-04-23 15:53:51', 'admin', '2021-04-22 17:00:00', 'admin'),
+(2, 'VP Nguyễn Hoàng', 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL, 1, '2021-04-23 15:53:55', 'admin', '2021-04-22 17:00:00', 'admin');
 
 DROP TABLE IF EXISTS `province`;
 CREATE TABLE IF NOT EXISTS `province` (
