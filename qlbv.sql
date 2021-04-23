@@ -21,23 +21,32 @@ CREATE TABLE IF NOT EXISTS `car` (
   `total_rows` tinyint(4) NOT NULL,
   `total_cols` tinyint(4) NOT NULL,
   `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
   `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `modified_on` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `car` (`id`, `origin_id`, `name`, `total_chairs`, `total_floors`, `total_rows`, `total_cols`, `note`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(1, 1, 'Test', 2, 2, 5, 5, 'abc xyz', 1, '2021-04-23 15:02:41', 'admin', '2021-04-23 15:22:28', 'admin');
 
 DROP TABLE IF EXISTS `chair`;
 CREATE TABLE IF NOT EXISTS `chair` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `car_id` int(11) NOT NULL,
   `row` tinyint(2) NOT NULL,
-  `col` tinyint(1) NOT NULL,
+  `col` tinyint(2) NOT NULL,
   `floor` bit(1) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `I_3` (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `chair` (`id`, `car_id`, `row`, `col`, `floor`) VALUES
+(1, 1, 1, 2, b'0'),
+(2, 1, 3, 3, b'0'),
+(3, 1, 2, 4, b'1');
 
 DROP TABLE IF EXISTS `chair_schedule`;
 CREATE TABLE IF NOT EXISTS `chair_schedule` (
@@ -972,10 +981,10 @@ CREATE TABLE IF NOT EXISTS `route` (
   `modified_on` timestamp NULL DEFAULT current_timestamp(),
   `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `route` (`id`, `origin_id`, `name`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
-(1, 1, 'Tuyến số 01', 1, '2021-04-19 15:39:36', 'admin', '2021-04-19 15:39:36', 'admin'),
+(1, 0, 'okr', 2, '2021-04-19 15:39:36', 'admin', '2021-04-23 13:20:07', 'admin'),
 (2, 0, 'A', 0, '2021-04-19 15:46:36', '00000000-0000-0000-0000-000000000000', NULL, NULL),
 (3, 0, 'A', 0, '2021-04-19 15:58:24', 'admin', NULL, NULL),
 (4, 0, 'A', 0, '2021-04-19 16:21:47', 'admin', NULL, NULL),
@@ -1000,7 +1009,10 @@ INSERT INTO `route` (`id`, `origin_id`, `name`, `status`, `created_on`, `created
 (23, 23, 'A', 0, '2021-04-19 17:32:30', 'admin', '2021-04-19 17:32:30', 'admin'),
 (24, 0, 'A', 0, '2021-04-19 17:32:35', 'admin', NULL, NULL),
 (25, 0, 'A', 0, '2021-04-19 17:33:59', 'admin', NULL, NULL),
-(26, 0, 'A', 0, '2021-04-19 17:38:58', 'admin', NULL, NULL);
+(26, 0, 'A', 0, '2021-04-19 17:38:58', 'admin', NULL, NULL),
+(27, 0, 'anccccc', 1, '2021-04-21 10:16:53', 'admin', NULL, NULL),
+(28, 0, 'anccccc', 1, '2021-04-21 10:16:58', 'admin', NULL, NULL),
+(29, 0, 'anccccc 213123', 1, '2021-04-21 10:18:46', 'admin', '2021-04-21 10:23:51', 'admin');
 
 DROP TABLE IF EXISTS `route_point`;
 CREATE TABLE IF NOT EXISTS `route_point` (
