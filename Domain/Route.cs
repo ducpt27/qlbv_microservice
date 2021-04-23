@@ -8,7 +8,7 @@ using VeXe.DTO.Request.Route;
 namespace VeXe.Domain
 {
     [Table("route")]
-    public class Route :AuditableEntity, IMapFrom<AddRouteReq>, IMapFrom<EditRouteReq>
+    public class Route :AuditableEntity
     {
         [Key]
         public int Id { get; set; }

@@ -16,24 +16,24 @@ namespace VeXe.Controller
         public async Task<ActionResult> GetList()
         {
             var vm = await Mediator.Send(new RoutesFilterReq());
-
             return Ok(vm);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> AddOne([FromBody] AddRouteReq addRouteReq)
+        public async Task<ActionResult> AddOne([FromBody] AddRouteReq req)
         {
-            var vm = await Mediator.Send(addRouteReq);
-
+            var vm = await Mediator.Send(req);
             return Ok(vm);
         }
         [HttpPut]
         [Authorize]
-        public async Task<ActionResult> EditOne([FromBody] EditRouteReq editRouteReq)
+        [Route("/{id:int}")]
+        public async Task<ActionResult> EditOne(int id, [FromBody] EditRouteReq req)
         {
-            var vm = await Mediator.Send(editRouteReq);
-
+            req.Id = id;
+            Console.WriteLine("id " + id);
+            var vm = await Mediator.Send(req);
             return Ok(vm);
         }
     }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Newtonsoft.Json;
 using VeXe.Common.Mapping;
 using VeXe.Domain;
@@ -33,7 +34,11 @@ namespace VeXe.DTO
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Car, CarDto>()
-                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
+                .ForMember(x => x.CreatedOn,
+                    opt => opt.MapFrom(src => ((DateTime)src.CreatedOn).ToShortDateString()))
+                .ForMember(x => x.ModifiedOn,
+                    opt => opt.MapFrom(src => ((DateTime)src.ModifiedOn).ToShortDateString()));
         }
     }
 }
