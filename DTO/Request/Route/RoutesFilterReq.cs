@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using MediatR;
-using VeXe.DTO;
 
-namespace VeXe.Dto.Request
+namespace VeXe.DTO.Request.Route
 {
     public class RoutesFilterReq: IRequest<List<RouteDto>>
     {
