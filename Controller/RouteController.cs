@@ -32,7 +32,6 @@ namespace VeXe.Controller
         public async Task<ActionResult> EditOne(int id, [FromBody] EditRouteReq req)
         {
             req.Id = id;
-            Console.WriteLine("id " + id);
             var vm = await Mediator.Send(req);
             return Ok(vm);
         }
