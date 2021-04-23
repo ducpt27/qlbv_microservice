@@ -12,6 +12,8 @@ namespace VeXe.DTO
         public int Id { get; set; }
         [JsonProperty(PropertyName = "route_id")]
         public int RouteId { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
         [JsonProperty(PropertyName = "street")]
         public string Street { get; set; }
         [JsonProperty(PropertyName = "province_id")]

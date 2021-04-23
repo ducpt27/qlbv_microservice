@@ -12,6 +12,10 @@ namespace VeXe.Domain
         [Column("route_id")]
         public int RouteId { get; set; }
         
+        [Column("name")]
+        public string Name { get; set; }
+        
+        [Column("street")]
         public string Street { get; set; }
         
         [Column("province_id")]
