@@ -69,6 +69,11 @@ namespace VeXe.Persistence
                 .HasOne<Point>(sc => sc.Point)
                 .WithMany(s => s.RoutePoints)
                 .HasForeignKey(sc => sc.PointId);
+
+            modelBuilder.Entity<Chair>()
+                .HasOne(p => p.Car);
+            modelBuilder.Entity<Car>()
+                .HasMany(s => s.Chairs);
         }
     }
 }

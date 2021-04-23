@@ -8,6 +8,7 @@ namespace VeXe.Domain
     public class Car :AuditableEntity
     {
         [Key]
+        [Column("id")]
         public int Id { get; set; }
         [Column("origin_id")]
         public int OriginId { get; set; }
@@ -26,7 +27,9 @@ namespace VeXe.Domain
         [Column("total_cols")]
         public int TotalCols { get; set; }
 
+        [Column("note")]
         public string Note { get; set; }
         
+        public IList<Chair> Chairs { get; set; } 
     }
 }

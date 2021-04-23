@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AutoMapper;
 using Newtonsoft.Json;
 using VeXe.Common.Mapping;
@@ -14,6 +15,8 @@ namespace VeXe.DTO
         public int OriginId { get; set; }
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
+        [JsonProperty(PropertyName = "note")]
+        public string Note { get; set; }
         [JsonProperty(PropertyName = "total_chairs")]
         public int TotalChairs { get; set; }
         [JsonProperty(PropertyName = "total_floors")]
@@ -30,6 +33,9 @@ namespace VeXe.DTO
         public string ModifiedBy { get; set; }
         [JsonProperty(PropertyName = "modified_on")]
         public string ModifiedOn { get; set; }
+        
+        [JsonProperty(PropertyName = "chairs")]
+        public IList<ChairDto> Chairs { get; set; } 
         
         public void Mapping(Profile profile)
         {
