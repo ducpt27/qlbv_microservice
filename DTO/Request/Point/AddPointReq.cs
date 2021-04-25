@@ -13,7 +13,7 @@ namespace VeXe.Dto.Request.Point
 {
     public class AddPointReq : IRequest<PointDto>
     {
-        [Required]
+        
         [JsonPropertyName("street")]
         public string Street { get; set; }
 
@@ -21,11 +21,14 @@ namespace VeXe.Dto.Request.Point
         [JsonPropertyName("province_id")]
         public int ProvinceId { get; set; }
         
+        [Required]
         [JsonPropertyName("district_id")]
         public int DistrictId { get; set; }
         
+        [Required]
         [JsonPropertyName("ward_id")]
         public int WardId { get; set; }
+        
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -60,6 +63,7 @@ namespace VeXe.Dto.Request.Point
         
                     await _context.Points.AddAsync(point);
                     await _context.SaveChangesAsync(cancellationToken);
+                    return _mapper.Map<PointDto>(point);
                     if (point == null)
                     {
                         throw new BadRequestException("Có lỗi xảy ra");
@@ -69,8 +73,8 @@ namespace VeXe.Dto.Request.Point
                     // if (request.PointIds == null || request.PointIds.Length <= 0) 
                     //     return _mapper.Map<RouteDto>(route);
                     // var existPointIds = request.PointIds != null && request.PointIds.Length > 0;
-                    try
-                    {
+                    // try
+                    // {
                         // if (existPointIds)
                         // {
                         //     foreach (var pointId in request.PointIds)
@@ -85,12 +89,12 @@ namespace VeXe.Dto.Request.Point
                         //
                         //     await _context.SaveChangesAsync(cancellationToken);
                         // }
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new BadRequestException("Có lỗi xảy ra");
-                    }
-                    return _mapper.Map<PointDto>(point);
+                    // }
+                    // catch (Exception ex)
+                    // {
+                    //     throw new BadRequestException("Có lỗi xảy ra");
+                    // }
+                    
                 }
             }
     }

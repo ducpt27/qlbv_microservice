@@ -12,21 +12,24 @@ namespace VeXe.Dto.Request.Point
 {
     public class EditPointReq : IRequest<PointDto>
     {
-        [Required]
+      
         [JsonPropertyName("street")]
         public string Street { get; set; }
+        
         [Required]
         public int Id { get; set; }
         [Required]
         [JsonPropertyName("province_id")]
         public int ProvinceId { get; set; }
         
+        [Required]
         [JsonPropertyName("district_id")]
         public int DistrictId { get; set; }
         
+        [Required]
         [JsonPropertyName("ward_id")]
         public int WardId { get; set; }
-        [Required]
+       
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
