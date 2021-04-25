@@ -56,19 +56,6 @@ INSERT INTO `chair` (`id`, `car_id`, `row`, `col`, `floor`) VALUES
 (8, 3, 3, 3, b'0'),
 (9, 3, 2, 4, b'1');
 
-DROP TABLE IF EXISTS `chair_schedule`;
-CREATE TABLE IF NOT EXISTS `chair_schedule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `drive_schedule_id` int(11) NOT NULL,
-  `chair_id` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  `modified_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `I_2` (`drive_schedule_id`),
-  KEY `I_CHAIR_1` (`chair_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
 DROP TABLE IF EXISTS `district`;
 CREATE TABLE IF NOT EXISTS `district` (
   `id` int(11) NOT NULL,
@@ -801,7 +788,14 @@ CREATE TABLE IF NOT EXISTS `drive_point` (
   KEY `I_8` (`drive_schedule_id`),
   KEY `I_501` (`point_id_start`),
   KEY `I_502` (`point_id_end`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `drive_point` (`id`, `price`, `drive_schedule_id`, `point_id_start`, `point_id_end`) VALUES
+(9, '50000.00', 9, 2, 3),
+(10, '50000.00', 10, 2, 3),
+(11, '50000.00', 11, 2, 3),
+(12, '50000.00', 12, 2, 3),
+(13, '50000.00', 13, 2, 3);
 
 DROP TABLE IF EXISTS `drive_point_static`;
 CREATE TABLE IF NOT EXISTS `drive_point_static` (
@@ -837,7 +831,14 @@ CREATE TABLE IF NOT EXISTS `drive_schedule` (
   KEY `I_USER_2` (`user_2`),
   KEY `I_ROUTE_1` (`route_id`),
   KEY `I_CAR_1` (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `drive_schedule` (`id`, `user_1`, `user_2`, `route_id`, `car_id`, `total_time`, `price`, `note`, `total_chairs_remain`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(9, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, '120000.00', 'Phát súng thứ 2', 0, 1, '2021-04-25 10:03:28', 'admin', '2021-04-25 10:03:28', 'admin'),
+(10, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, '120000.00', 'Phát súng thứ 2', 0, 1, '2021-04-25 10:07:12', 'admin', '2021-04-25 10:07:12', 'admin'),
+(11, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, '120000.00', 'Phát súng thứ 2', 0, 1, '2021-04-25 10:07:41', 'admin', '2021-04-25 10:07:41', 'admin'),
+(12, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, '120000.00', 'Phát súng thứ 2', 0, 1, '2021-04-25 10:08:19', 'admin', '2021-04-25 10:08:19', 'admin'),
+(13, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, '120000.00', 'Phát súng thứ 2', 0, 1, '2021-04-25 10:15:09', 'admin', '2021-04-25 10:15:09', 'admin');
 
 DROP TABLE IF EXISTS `drive_schedule_static`;
 CREATE TABLE IF NOT EXISTS `drive_schedule_static` (
@@ -863,7 +864,19 @@ CREATE TABLE IF NOT EXISTS `drive_time` (
   PRIMARY KEY (`id`),
   KEY `I_DRIVE_1` (`drive_schedule_id`),
   KEY `I_POINT_1` (`point_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `drive_time` (`id`, `drive_schedule_id`, `point_id`, `time_start`) VALUES
+(17, 9, 1, '2021-04-26 07:00:00'),
+(18, 9, 2, '2021-04-26 08:00:00'),
+(19, 10, 1, '2021-04-26 07:00:00'),
+(20, 10, 2, '2021-04-26 08:00:00'),
+(21, 11, 1, '2021-04-26 10:00:00'),
+(22, 11, 2, '2021-04-26 11:00:00'),
+(23, 12, 1, '2021-04-26 10:00:00'),
+(24, 12, 2, '2021-04-26 11:00:00'),
+(25, 13, 1, '2021-04-26 10:00:00'),
+(26, 13, 2, '2021-04-26 11:00:00');
 
 DROP TABLE IF EXISTS `drive_time_static`;
 CREATE TABLE IF NOT EXISTS `drive_time_static` (
@@ -880,13 +893,21 @@ DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE IF NOT EXISTS `order_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
-  `chair_schedule_id` int(11) NOT NULL,
+  `drive_schedule_id` int(11) NOT NULL,
+  `chair_id` int(11) NOT NULL,
   `price` decimal(11,2) NOT NULL,
   `discount` decimal(11,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `I_6` (`order_id`),
-  KEY `I_7` (`chair_schedule_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `I_21` (`drive_schedule_id`),
+  KEY `I_22` (`chair_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `order_item` (`id`, `order_id`, `drive_schedule_id`, `chair_id`, `price`, `discount`) VALUES
+(1, 4, 9, 1, '120000.00', '20000.00'),
+(2, 5, 9, 1, '120000.00', '20000.00'),
+(3, 6, 9, 1, '120000.00', '20000.00'),
+(4, 9, 9, 2, '120000.00', '20000.00');
 
 DROP TABLE IF EXISTS `point`;
 CREATE TABLE IF NOT EXISTS `point` (
@@ -904,11 +925,12 @@ CREATE TABLE IF NOT EXISTS `point` (
   `modified_on` timestamp NULL DEFAULT NULL,
   `modified_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `point` (`id`, `name`, `street`, `province_id`, `district_id`, `ward_id`, `lat`, `lng`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
-(1, 'Bến xe mỹ đình', 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL, 1, '2021-04-23 15:53:51', 'admin', '2021-04-22 17:00:00', 'admin'),
-(2, 'VP Nguyễn Hoàng', 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL, 1, '2021-04-23 15:53:55', 'admin', '2021-04-22 17:00:00', 'admin');
+(1, 'Bến xe mỹ đình', 'Bến xe mỹ đình', 2, 28, 386, NULL, NULL, 1, '2021-04-25 01:41:07', 'ducpham27.it@gmail.com', '2021-04-22 17:00:00', 'ducpham27.it@gmail.com'),
+(2, 'VP Nguyễn Hoàng', 'VP Nguyễn Hoàng', 2, 28, 385, NULL, NULL, 1, '2021-04-25 01:41:07', 'ducpham27.it@gmail.com', '2021-04-22 17:00:00', 'ducpham27.it@gmail.com'),
+(3, 'Bến xe Cầu Rào', 'Bến xe CR', 2, 28, 385, NULL, NULL, 1, '2021-04-25 01:41:06', 'ducpham27.it@gmail.com', NULL, 'ducpham27.it@gmail.com');
 
 DROP TABLE IF EXISTS `province`;
 CREATE TABLE IF NOT EXISTS `province` (
@@ -1039,10 +1061,11 @@ CREATE TABLE IF NOT EXISTS `route_point` (
 INSERT INTO `route_point` (`route_id`, `point_id`, `position`) VALUES
 (1, 1, 0),
 (1, 2, 1),
+(1, 3, 2),
 (19, 2, 0),
 (20, 2, 0),
 (23, 1, 0),
-(23, 2, 0);
+(23, 2, 1);
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
@@ -1065,7 +1088,10 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `code` (`code`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `user` (`id`, `code`, `email`, `password`, `full_name`, `mobile`, `age`, `note`, `group_id`, `address`, `birthdate`, `status`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(1, 'USE001', 'ducpham27.it@gmail.com', '123456', 'Đức Phạm', '0363523090', 22, NULL, 1, 'Hà Nội', '2000-02-27', 1, '2021-04-25 01:34:47', 'ducpham27.it@gmail.com', '2021-04-25 01:35:12', 'ducpham27.it@gmail.com');
 
 DROP TABLE IF EXISTS `ward`;
 CREATE TABLE IF NOT EXISTS `ward` (
@@ -2633,8 +2659,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (1551, 'Phả Lễ', 'Xã', 7, 103),
 (1552, 'Phù Ninh', 'Xã', 7, 103),
 (1553, 'Quảng Thanh', 'Xã', 7, 103),
-(1554, 'Tân Dương', 'Xã', 7, 103);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(1554, 'Tân Dương', 'Xã', 7, 103),
 (1555, 'Thiên Hương', 'Xã', 7, 103),
 (1556, 'Thủy Sơn', 'Xã', 7, 103),
 (1557, 'Thủy Triều', 'Xã', 7, 103),
@@ -4105,8 +4130,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (3022, 'Vạn Ninh', 'Xã', 17, 218),
 (3023, 'Xuân Lai', 'Xã', 17, 218),
 (3024, 'An Thịnh', 'Xã', 17, 219),
-(3025, 'Bình Định', 'Xã', 17, 219);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(3025, 'Bình Định', 'Xã', 17, 219),
 (3026, 'Lai Hạ', 'Xã', 17, 219),
 (3027, 'Lâm Thao', 'Xã', 17, 219),
 (3028, 'Minh Tân', 'Xã', 17, 219),
@@ -5557,8 +5581,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (4473, 'Cộng Hòa', 'Phường', 21, 289),
 (4474, 'Đồng Lạc', 'Xã', 21, 289),
 (4475, 'Hoàng Hoa Thám', 'Phường', 21, 289),
-(4476, 'Hoàng Tân', 'Phường', 21, 289);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(4476, 'Hoàng Tân', 'Phường', 21, 289),
 (4477, 'Hoàng Tiến', 'Xã', 21, 289),
 (4478, 'Hưng Đạo', 'Xã', 21, 289),
 (4479, 'Kênh Giang', 'Xã', 21, 289),
@@ -7032,8 +7055,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (5947, 'An Bá', 'Xã', 28, 372),
 (5948, 'An Châu', 'Thị trấn', 28, 372),
 (5949, 'An Châu', 'Xã', 28, 372),
-(5950, 'An Lạc', 'Xã', 28, 372);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(5950, 'An Lạc', 'Xã', 28, 372),
 (5951, 'An Lập', 'Xã', 28, 372),
 (5952, 'Bồng Am', 'Xã', 28, 372),
 (5953, 'Cẩm Đàn', 'Xã', 28, 372),
@@ -8497,8 +8519,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (7411, 'Nghĩa Phú', 'Xã', 36, 458),
 (7412, 'Nghĩa Phương', 'Xã', 36, 458),
 (7413, 'Nghĩa Sơn', 'Xã', 36, 458),
-(7414, 'Nghĩa Thắng', 'Xã', 36, 458);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(7414, 'Nghĩa Thắng', 'Xã', 36, 458),
 (7415, 'Nghĩa Thọ', 'Xã', 36, 458),
 (7416, 'Nghĩa Thuận', 'Xã', 36, 458),
 (7417, 'Nghĩa Thương', 'Xã', 36, 458),
@@ -9963,8 +9984,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (8876, 'Tân Nhuận Đông', 'Xã', 47, 549),
 (8877, 'Tân Phú', 'Xã', 47, 549),
 (8878, 'Tân Phú Trung', 'Xã', 47, 549),
-(8879, 'An Bình A', 'Xã', 47, 550);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(8879, 'An Bình A', 'Xã', 47, 550),
 (8880, 'An Bình B', 'Xã', 47, 550),
 (8881, 'An Lạc', 'Phường', 47, 550),
 (8882, 'An Lộc', 'Phường', 47, 550),
@@ -11417,8 +11437,7 @@ INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
 (10329, 'Phình Giàng', 'Xã', 58, 650),
 (10330, 'Pú Hồng', 'Xã', 58, 650),
 (10331, 'Pú Nhi', 'Xã', 58, 650),
-(10332, 'Tìa Dình', 'Xã', 58, 650);
-INSERT INTO `ward` (`id`, `name`, `prefix`, `province_id`, `district_id`) VALUES
+(10332, 'Tìa Dình', 'Xã', 58, 650),
 (10333, 'Xa Dung', 'Xã', 58, 650),
 (10334, 'Him Lam', 'Phường', 58, 651),
 (10335, 'Mường Thanh', 'Phường', 58, 651),
@@ -12378,13 +12397,11 @@ CREATE TABLE IF NOT EXISTS `_order` (
   `code` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(9,2) NOT NULL,
   `discount` decimal(9,2) NOT NULL,
-  `price_return` int(11) NOT NULL,
   `mobile` varchar(12) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` tinyint(2) DEFAULT NULL,
   `status` tinyint(4) NOT NULL,
   `payment_status` tinyint(4) NOT NULL,
-  `payment_return_status` tinyint(4) NOT NULL,
   `drive_point_id_start` int(11) NOT NULL,
   `drive_point_id_end` int(11) NOT NULL,
   `created_on` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -12395,15 +12412,18 @@ CREATE TABLE IF NOT EXISTS `_order` (
   KEY `I_4` (`drive_schedule_id`),
   KEY `I_P_10` (`drive_point_id_start`),
   KEY `I_P_11` (`drive_point_id_end`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT INTO `_order` (`id`, `drive_schedule_id`, `code`, `price`, `discount`, `mobile`, `full_name`, `age`, `status`, `payment_status`, `drive_point_id_start`, `drive_point_id_end`, `created_on`, `created_by`, `modified_on`, `modified_by`) VALUES
+(1, 9, 'abc', '120000.00', '20000.00', '0363523090', 'P Trung Đức ', 21, 1, 1, 1, 3, '2021-04-25 12:13:19', '', '2021-04-25 12:13:19', NULL),
+(4, 9, '0363523090', '120000.00', '20000.00', '0363523090', 'P Trung Đức', 9, 1, 1, 1, 3, '2021-04-25 12:13:06', 'admin', '2021-04-25 12:13:07', 'admin'),
+(5, 9, '0363523090', '120000.00', '20000.00', '0363523090', 'P Trung Đức', 9, 1, 1, 1, 3, '2021-04-25 12:14:51', 'admin', '2021-04-25 12:14:51', 'admin'),
+(6, 9, '0363523090', '120000.00', '20000.00', '0363523090', 'P Trung Đức', 9, 1, 1, 1, 3, '2021-04-25 12:15:47', 'admin', '2021-04-25 12:15:48', 'admin'),
+(9, 9, '0363523090', '120000.00', '20000.00', '0363523090', 'P Trung Đức', 9, 1, 1, 1, 3, '2021-04-25 12:18:38', 'admin', '2021-04-25 12:18:38', 'admin');
 
 
 ALTER TABLE `chair`
   ADD CONSTRAINT `I_3` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `chair_schedule`
-  ADD CONSTRAINT `I_2` FOREIGN KEY (`drive_schedule_id`) REFERENCES `drive_schedule` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `I_CHAIR_1` FOREIGN KEY (`chair_id`) REFERENCES `chair` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `district`
   ADD CONSTRAINT `I_DISTRICT_PROVINCE_1` FOREIGN KEY (`province_id`) REFERENCES `province` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -12437,8 +12457,9 @@ ALTER TABLE `drive_time_static`
   ADD CONSTRAINT `I_102` FOREIGN KEY (`point_id`) REFERENCES `point` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `order_item`
-  ADD CONSTRAINT `I_6` FOREIGN KEY (`order_id`) REFERENCES `_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `I_7` FOREIGN KEY (`chair_schedule_id`) REFERENCES `chair_schedule` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `I_21` FOREIGN KEY (`drive_schedule_id`) REFERENCES `drive_schedule` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `I_22` FOREIGN KEY (`chair_id`) REFERENCES `chair` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `I_6` FOREIGN KEY (`order_id`) REFERENCES `_order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `route_point`
   ADD CONSTRAINT `I_POINT_01` FOREIGN KEY (`point_id`) REFERENCES `point` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
