@@ -823,7 +823,6 @@ CREATE TABLE IF NOT EXISTS `drive_schedule` (
   `user_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `route_id` int(11) NOT NULL,
   `car_id` int(11) NOT NULL,
-  `time_start` timestamp NULL DEFAULT NULL,
   `total_time` smallint(6) NOT NULL,
   `price` decimal(11,2) NOT NULL,
   `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
