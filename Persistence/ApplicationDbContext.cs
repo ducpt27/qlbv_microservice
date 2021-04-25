@@ -33,6 +33,8 @@ namespace VeXe.Persistence
         public DbSet<RoutePoint> RoutePoints { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<DriveSchedule> DriveSchedules { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        
         public DbSet<DrivePoint> DrivePoints { get; set; }
         public DbSet<DriveTime> DriveTimes { get; set; }
         public DbSet<ChairSchedule> ChairSchedules { get; set; }
@@ -90,6 +92,12 @@ namespace VeXe.Persistence
                 .HasMany(s => s.Chairs);
             modelBuilder.Entity<Car>()
                 .HasMany(s => s.DriveSchedules);
+            
+            
+            modelBuilder.Entity<Province>()
+                .HasMany(s => s.Districts);
+            modelBuilder.Entity<District>()
+                .HasMany(s => s.Wards);
             
             modelBuilder.Entity<DriveSchedule>()
                 .HasMany(s => s.ChairSchedules);

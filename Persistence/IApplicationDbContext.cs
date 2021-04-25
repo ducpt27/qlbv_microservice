@@ -14,6 +14,8 @@ namespace VeXe.Persistence
         DbSet<RoutePoint> RoutePoints { get; set; }
         DbSet<Car> Cars { get; set; }
         DbSet<DriveSchedule> DriveSchedules { get; set; }
+        DbSet<Province> Provinces { get; set; }
+        
         DbSet<DrivePoint> DrivePoints { get; set; }
         DbSet<DriveTime> DriveTimes { get; set; }
         DbSet<ChairSchedule> ChairSchedules { get; set; }
