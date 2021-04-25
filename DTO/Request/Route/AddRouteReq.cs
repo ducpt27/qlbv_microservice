@@ -58,12 +58,14 @@ namespace VeXe.DTO.Request.Route
                 {
                     if (existPointIds)
                     {
+                        var i = 0;
                         foreach (var pointId in request.PointIds)
                         {
                             var routePoint = new RoutePoint()
                             {
                                 PointId = pointId,
-                                RouteId = route.Id
+                                RouteId = route.Id,
+                                Position = i++
                             };
                             await _context.RoutePoints.AddAsync(routePoint);
                         }
