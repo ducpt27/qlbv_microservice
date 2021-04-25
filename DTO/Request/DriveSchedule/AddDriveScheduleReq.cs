@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Newtonsoft.Json;
+using VeXe.Common.Exceptions;
+using VeXe.Domain;
 using VeXe.DTO;
 using VeXe.Persistence;
 
@@ -27,22 +29,14 @@ namespace VeXe.Dto.Request.DriveSchedule
         [JsonProperty(PropertyName = "price")] public decimal Price { get; set; }
         [JsonProperty(PropertyName = "note")] public string Note { get; set; }
 
-        [JsonProperty(PropertyName = "total_chairs_remain")]
-        public int TotalChairsRemain { get; set; }
-
         [JsonProperty(PropertyName = "status")]
         public int Status { get; set; }
 
         [JsonProperty(PropertyName = "drive_point")]
-        public IList<DrivePointDto> DrivePointDtos { get; set; }
+        public IList<DrivePointDto> DrivePoint { get; set; }
 
         [JsonProperty(PropertyName = "drive_time")]
-        public IList<DriveTimeDto> DriveTimeDtos { get; set; }
-
-        [JsonProperty(PropertyName = "chair_schedule")]
-        public IList<ChairScheduleDto> ChairScheduleDtos { get; set; }
-
-        [JsonProperty(PropertyName = "car")] public CarDto CarDto { get; set; }
+        public IList<DriveTimeDto> DriveTime { get; set; }
 
         public class AddDriveScheduleHandler : IRequestHandler<AddDriveScheduleReq, DriveScheduleDto>
         {
@@ -55,10 +49,62 @@ namespace VeXe.Dto.Request.DriveSchedule
                 _mapper = mapper;
             }
 
-            public Task<DriveScheduleDto> Handle(AddDriveScheduleReq request, CancellationToken cancellationToken)
+            public async Task<DriveScheduleDto> Handle(AddDriveScheduleReq request, CancellationToken cancellationToken)
             {
-                Console.WriteLine(JsonConvert.SerializeObject(request));
-                throw new System.NotImplementedException();
+                try
+                {
+                    var transaction = _context.Database.BeginTransaction();
+                    var driveSchedule = new Domain.DriveSchedule()
+                    {
+                        Note = request.Note,
+                        Price = request.Price,
+                        User1 = request.User1,
+                        User2 = request.User2,
+                        Status = request.Status,
+                        RouteId = request.RouteId,
+                        CarId = request.CarId,
+                        TotalTime = request.TotalTime
+                    };
+                    await _context.DriveSchedules.AddAsync(driveSchedule);
+                    await _context.SaveChangesAsync(cancellationToken);
+
+                    if (request.DrivePoint != null && request.DrivePoint.Count > 0)
+                    {
+                        foreach (var item in request.DrivePoint)
+                        {
+                            var drivePoint = new DrivePoint
+                            {
+                                Price = item.Price,
+                                DriveScheduleId = driveSchedule.Id,
+                                PointIdStart = item.PointIdStart,
+                                PointIdEnd = item.PointIdEnd
+                            };
+                            await _context.DrivePoints.AddAsync(drivePoint);
+                        }
+                    }
+
+                    if (request.DriveTime != null && request.DriveTime.Count > 0)
+                    {
+                        foreach (var item in request.DriveTime)
+                        {
+                            var driveTime = new DriveTime
+                            {
+                                PointId = item.PointId,
+                                TimeStart = Convert.ToDateTime(item.TimeStart),
+                                DriveScheduleId = driveSchedule.Id,
+                            };
+                            await _context.DriveTimes.AddAsync(driveTime);
+                        }
+                    }
+                    
+                    await _context.SaveChangesAsync(cancellationToken);
+                    transaction.Commit();
+                    return _mapper.Map<DriveScheduleDto>(driveSchedule);
+                }
+                catch (Exception e)
+                {
+                    throw new BadRequestException(e.Message);
+                }
             }
         }
     }

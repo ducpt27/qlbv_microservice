@@ -18,7 +18,8 @@ namespace VeXe.Persistence
         
         DbSet<DrivePoint> DrivePoints { get; set; }
         DbSet<DriveTime> DriveTimes { get; set; }
-        DbSet<ChairSchedule> ChairSchedules { get; set; }
+        DbSet<Order> Orders { get; set; }
+        DbSet<OrderItem> OrderItems { get; set; }
         DatabaseFacade Database { get; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

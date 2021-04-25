@@ -6,7 +6,7 @@ using VeXe.DTO.Request.Car;
 
 namespace VeXe.Controller
 {
-    public class CarController: BaseController
+    public class CarController : BaseController
     {
         [HttpGet]
         [Authorize]
@@ -15,7 +15,7 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(new CarsFilterReq());
             return Ok(vm);
         }
-        
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> AddOne([FromBody] AddCarReq req)
@@ -23,6 +23,7 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(req);
             return Ok(vm);
         }
+
         [HttpPut]
         [Authorize]
         [Route("{id}")]

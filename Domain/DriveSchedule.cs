@@ -31,7 +31,7 @@ namespace VeXe.Domain
         public int Status { get; set; }
         public IList<DrivePoint> DrivePoints { get; set; }
         public IList<DriveTime> DriveTimes { get; set; }
-        public IList<ChairSchedule> ChairSchedules { get; set; }
+        public IList<OrderItem> OrderItems { get; set; }
         public Car Car { get; set; }
     }
 }

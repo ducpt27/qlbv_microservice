@@ -11,38 +11,46 @@ using VeXe.Persistence;
 
 namespace VeXe.DTO.Request.Car
 {
-    public class AddCarReq : IRequest<CarDto> 
+    public class AddCarReq : IRequest<CarDto>
     {
-        [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        [JsonProperty(PropertyName = "id")] public int Id { get; set; }
+
         [JsonProperty(PropertyName = "origin_id")]
         public int OriginId { get; set; }
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+
+        [JsonProperty(PropertyName = "name")] public string Name { get; set; }
+
         [JsonProperty(PropertyName = "total_chairs")]
         public int TotalChairs { get; set; }
+
         [JsonProperty(PropertyName = "total_floors")]
         public int TotalFloors { get; set; }
+
         [JsonProperty(PropertyName = "total_rows")]
         public int TotalRows { get; set; }
+
         [JsonProperty(PropertyName = "total_cols")]
         public int TotalCols { get; set; }
+
         [JsonProperty(PropertyName = "status")]
         public int Status { get; set; }
-        [JsonProperty(PropertyName = "note")]
-        public string Note { get; set; }
+
+        [JsonProperty(PropertyName = "note")] public string Note { get; set; }
+
         [JsonProperty(PropertyName = "chairs")]
-        public IList<ChairDto> Chairs { get; set; } 
-        
-        public class AddCarHandler: IRequestHandler<AddCarReq, CarDto>
+        public IList<ChairDto> Chairs { get; set; }
+
+        public class AddCarHandler : IRequestHandler<AddCarReq, CarDto>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
+
             public AddCarHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context;
                 _mapper = mapper;
             }
+
             public async Task<CarDto> Handle(AddCarReq request, CancellationToken cancellationToken)
             {
                 var car = new Domain.Car()
@@ -55,21 +63,11 @@ namespace VeXe.DTO.Request.Car
                     TotalFloors = request.TotalFloors,
                     Status = request.Status
                 };
-        
                 await _context.Cars.AddAsync(car);
                 await _context.SaveChangesAsync(cancellationToken);
-                if (car == null)
-                {
-                    throw new BadRequestException("Có lỗi xảy ra");
-                }
-                    
+
                 car.OriginId = request.OriginId == 0 ? car.Id : request.OriginId;
-                if (request.Chairs == null || request.Chairs.Count <= 0)
-                {
-                    return _mapper.Map<CarDto>(car);
-                }
-                
-                try
+                if (request.Chairs != null || request.Chairs.Count > 0)
                 {
                     foreach (var chairReq in request.Chairs)
                     {
@@ -82,13 +80,9 @@ namespace VeXe.DTO.Request.Car
                         };
                         await _context.Chairs.AddAsync(chair);
                     }
-    
-                    await _context.SaveChangesAsync(cancellationToken);
                 }
-                catch (Exception ex)
-                {
-                    throw new BadRequestException("Có lỗi xảy ra");
-                }
+
+                await _context.SaveChangesAsync(cancellationToken);
                 return _mapper.Map<CarDto>(car);
             }
         }

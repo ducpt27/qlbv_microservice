@@ -37,22 +37,26 @@ namespace VeXe.Persistence
         
         public DbSet<DrivePoint> DrivePoints { get; set; }
         public DbSet<DriveTime> DriveTimes { get; set; }
-        public DbSet<ChairSchedule> ChairSchedules { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
             {
+                var now = _dateTime.Now;
                 switch (entry.State)
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedBy = _currentUserService.Username;
-                        entry.Entity.CreatedOn = _dateTime.Now;
+                        entry.Entity.ModifiedBy = _currentUserService.Username;
+                        entry.Entity.CreatedOn = now;
+                        entry.Entity.ModifiedOn = now;
                         break;
                     case EntityState.Modified:
                         entry.Entity.ModifiedBy = _currentUserService.Username;
-                        entry.Entity.ModifiedOn = _dateTime.Now;
+                        entry.Entity.ModifiedOn = now;
                         break;
                 }
             }
@@ -100,13 +104,21 @@ namespace VeXe.Persistence
                 .HasMany(s => s.Wards);
             
             modelBuilder.Entity<DriveSchedule>()
-                .HasMany(s => s.ChairSchedules);
+                .HasMany(s => s.OrderItems);
             modelBuilder.Entity<DriveSchedule>()
                 .HasMany(s => s.DrivePoints);
             modelBuilder.Entity<DriveSchedule>()
                 .HasMany(s => s.DriveTimes);
             modelBuilder.Entity<DriveSchedule>()
                 .HasOne(s => s.Car);
+            
+            modelBuilder.Entity<Order>()
+                .HasMany(s => s.OrderItems);
+            
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(s => s.DriveSchedule);
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(s => s.Chair);
         }
     }
 }

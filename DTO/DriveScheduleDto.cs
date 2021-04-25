@@ -43,8 +43,8 @@ namespace VeXe.DTO
         public IList<DrivePointDto> DrivePoints { get; set; }
         [JsonProperty(PropertyName = "drive_time")]
         public IList<DriveTimeDto> DriveTimes { get; set; }
-        [JsonProperty(PropertyName = "chair_schedule")]
-        public IList<ChairScheduleDto> ChairSchedules { get; set; }
+        [JsonProperty(PropertyName = "order_items")]
+        public IList<OrderItemDto> OrderItems { get; set; }
         [JsonProperty(PropertyName = "car")]
         public CarDto Car { get; set; }
          
@@ -53,9 +53,9 @@ namespace VeXe.DTO
             profile.CreateMap<DriveSchedule, DriveScheduleDto>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.CreatedOn,
-                    opt => opt.MapFrom(src => ((DateTime)src.CreatedOn).ToString(CultureInfo.InvariantCulture)))
+                    opt => opt.MapFrom(src => (src.CreatedOn).ToString(CultureInfo.InvariantCulture)))
                 .ForMember(x => x.ModifiedOn,
-                    opt => opt.MapFrom(src => ((DateTime)src.ModifiedOn).ToString(CultureInfo.InvariantCulture)));
+                    opt => opt.MapFrom(src => (src.ModifiedOn).ToString(CultureInfo.InvariantCulture)));
         }
     }
 }

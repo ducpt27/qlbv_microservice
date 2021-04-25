@@ -9,6 +9,6 @@ namespace VeXe.Domain
 
         [Column("created_on")] public DateTime CreatedOn { get; set; }
         [Column("modified_by")] public string ModifiedBy { get; set; }
-        [Column("modified_on")] public DateTime? ModifiedOn { get; set; }
+        [Column("modified_on")] public DateTime ModifiedOn { get; set; }
     }
 }
