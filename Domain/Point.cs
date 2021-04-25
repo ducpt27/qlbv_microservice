@@ -5,12 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace VeXe.Domain
 {
     [Table("point")]
-    public class Point : AuditableEntity
+    public class Point :AuditableEntity
     {
         [Key]
         public int Id { get; set; }
-        [Column("route_id")]
-        public int RouteId { get; set; }
         
         [Column("name")]
         public string Name { get; set; }
@@ -26,6 +24,9 @@ namespace VeXe.Domain
         
         [Column("ward_id")]
         public int WardId { get; set; }
+        
+        [Column("name")]
+        public string Name { get; set; }
         
         [Column("status")]
         public int Status { get; set; }
