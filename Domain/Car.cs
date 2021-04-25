@@ -33,6 +33,8 @@ namespace VeXe.Domain
         [Column("status")]
         public int Status { get; set; }
         
-        public IList<Chair> Chairs { get; set; } 
+        public IList<Chair> Chairs { get; set; }
+        
+        public IList<DriveSchedule> DriveSchedules { get; set; }
     }
 }

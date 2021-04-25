@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using AutoMapper;
 using Newtonsoft.Json;
 using VeXe.Common.Mapping;
@@ -44,9 +45,9 @@ namespace VeXe.DTO
             profile.CreateMap<Car, CarDto>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.CreatedOn,
-                    opt => opt.MapFrom(src => ((DateTime)src.CreatedOn).ToShortDateString()))
+                    opt => opt.MapFrom(src => ((DateTime)src.CreatedOn).ToString(CultureInfo.InvariantCulture)))
                 .ForMember(x => x.ModifiedOn,
-                    opt => opt.MapFrom(src => ((DateTime)src.ModifiedOn).ToShortDateString()));
+                    opt => opt.MapFrom(src => ((DateTime)src.ModifiedOn).ToString(CultureInfo.InvariantCulture)));
         }
     }
 }

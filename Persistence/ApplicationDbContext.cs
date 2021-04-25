@@ -19,21 +19,25 @@ namespace VeXe.Persistence
         {
         }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ICurrentUserService currentUserService, IDateTime dateTime)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
+            ICurrentUserService currentUserService, IDateTime dateTime)
             : base(options)
         {
             _currentUserService = currentUserService;
             _dateTime = dateTime;
         }
+
         public DbSet<Route> Routes { get; set; }
         public DbSet<Chair> Chairs { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<RoutePoint> RoutePoints { get; set; }
-
         public DbSet<Car> Cars { get; set; }
+        public DbSet<DriveSchedule> DriveSchedules { get; set; }
+        public DbSet<DrivePoint> DrivePoints { get; set; }
+        public DbSet<DriveTime> DriveTimes { get; set; }
+        public DbSet<ChairSchedule> ChairSchedules { get; set; }
 
 
-    
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
@@ -51,21 +55,29 @@ namespace VeXe.Persistence
                 }
             }
 
+            foreach (var entry in ChangeTracker.Entries<ModifiedEntity>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.Entity.ModifiedBy = _currentUserService.Username;
+                        entry.Entity.ModifiedOn = _dateTime.Now;
+                        break;
+                }
+            }
+
             return base.SaveChangesAsync(cancellationToken);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-                    
-            modelBuilder.Entity<RoutePoint>().HasKey(sc => new { sc.PointId, sc.RouteId });
 
+            modelBuilder.Entity<RoutePoint>().HasKey(sc => new {sc.PointId, sc.RouteId});
             modelBuilder.Entity<RoutePoint>()
                 .HasOne<Route>(sc => sc.Route)
                 .WithMany(s => s.RoutePoints)
                 .HasForeignKey(sc => sc.RouteId);
-
-
             modelBuilder.Entity<RoutePoint>()
                 .HasOne<Point>(sc => sc.Point)
                 .WithMany(s => s.RoutePoints)
@@ -73,8 +85,20 @@ namespace VeXe.Persistence
 
             modelBuilder.Entity<Chair>()
                 .HasOne(p => p.Car);
+            
             modelBuilder.Entity<Car>()
                 .HasMany(s => s.Chairs);
+            modelBuilder.Entity<Car>()
+                .HasMany(s => s.DriveSchedules);
+            
+            modelBuilder.Entity<DriveSchedule>()
+                .HasMany(s => s.ChairSchedules);
+            modelBuilder.Entity<DriveSchedule>()
+                .HasMany(s => s.DrivePoints);
+            modelBuilder.Entity<DriveSchedule>()
+                .HasMany(s => s.DriveTimes);
+            modelBuilder.Entity<DriveSchedule>()
+                .HasOne(s => s.Car);
         }
     }
 }
