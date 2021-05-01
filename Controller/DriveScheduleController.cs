@@ -5,6 +5,7 @@ using VeXe.Dto.Request.DriveSchedule;
 
 namespace VeXe.Controller
 {
+    [Route("api/drive_schedule")]
     public class DriveScheduleController : BaseController
     {
         [HttpGet]

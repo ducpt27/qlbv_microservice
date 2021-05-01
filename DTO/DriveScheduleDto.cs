@@ -40,7 +40,7 @@ namespace VeXe.DTO
         public string ModifiedOn { get; set; }
         
         [JsonProperty(PropertyName = "drive_point")]
-        public IList<DrivePointDto> DrivePoints { get; set; }
+        public IList<DrivePriceDto> DrivePrices { get; set; }
         [JsonProperty(PropertyName = "drive_time")]
         public IList<DriveTimeDto> DriveTimes { get; set; }
         [JsonProperty(PropertyName = "order_items")]

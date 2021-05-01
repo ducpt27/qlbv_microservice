@@ -29,8 +29,8 @@ namespace VeXe.Domain
         public int TotalChairsRemain { get; set; }
         [Column("status")]
         public int Status { get; set; }
+        public IList<DrivePrice> DrivePrices { get; set; }
         public IList<DrivePoint> DrivePoints { get; set; }
-        public IList<DriveTime> DriveTimes { get; set; }
         public IList<OrderItem> OrderItems { get; set; }
         public Car Car { get; set; }
     }

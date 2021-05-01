@@ -18,8 +18,8 @@ namespace VeXe.Domain
         [Column("age")] public int Age { get; set; }
         [Column("status")] public int Status { get; set; }
         [Column("payment_status")] public int PaymentStatus { get; set; }
-        [Column("drive_point_id_start")] public int DrivePointIdStart { get; set; }
-        [Column("drive_point_id_end")] public int DrivePointIdEnd { get; set; }
+        [Column("point_id_start")] public int PointIdStart { get; set; }
+        [Column("point_id_end")] public int PointIdEnd { get; set; }
 
         public IList<OrderItem> OrderItems { get; set; }
     }

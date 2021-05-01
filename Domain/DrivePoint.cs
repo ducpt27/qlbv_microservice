@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VeXe.Domain
@@ -11,11 +12,9 @@ namespace VeXe.Domain
         public int Id { get; set; }
         [Column("drive_schedule_id")]
         public int DriveScheduleId { get; set; }
-        [Column("price")]
-        public decimal Price { get; set; }
-        [Column("point_id_start")]
-        public int PointIdStart { get; set; }
-        [Column("point_id_end")]
-        public int PointIdEnd { get; set; }
+        [Column("point_id")]
+        public int PointId { get; set; }
+        [Column("time_start")]
+        public DateTime TimeStart { get; set; }
     }
 }

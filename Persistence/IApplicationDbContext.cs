@@ -16,8 +16,8 @@ namespace VeXe.Persistence
         DbSet<DriveSchedule> DriveSchedules { get; set; }
         DbSet<Province> Provinces { get; set; }
         
+        DbSet<DrivePrice> DrivePrices { get; set; }
         DbSet<DrivePoint> DrivePoints { get; set; }
-        DbSet<DriveTime> DriveTimes { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<OrderItem> OrderItems { get; set; }
         DatabaseFacade Database { get; }

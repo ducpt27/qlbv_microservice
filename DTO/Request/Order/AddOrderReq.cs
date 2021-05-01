@@ -43,12 +43,12 @@ namespace VeXe.Dto.Request.Order
         public int PaymentStatus { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "drive_point_id_start")]
-        public int DrivePointIdStart { get; set; }
+        [JsonProperty(PropertyName = "point_id_start")]
+        public int PointIdStart { get; set; }
 
         [Required]
-        [JsonProperty(PropertyName = "drive_point_id_end")]
-        public int DrivePointIdEnd { get; set; }
+        [JsonProperty(PropertyName = "point_id_end")]
+        public int PointIdEnd { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "order_items")]
@@ -79,8 +79,8 @@ namespace VeXe.Dto.Request.Order
                         Status = request.Status,
                         PaymentStatus = request.PaymentStatus,
                         DriveScheduleId = request.DriveScheduleId,
-                        DrivePointIdStart = request.DrivePointIdStart,
-                        DrivePointIdEnd = request.DrivePointIdEnd,
+                        PointIdStart = request.PointIdStart,
+                        PointIdEnd = request.PointIdEnd,
                         Code = request.Mobile,
                         Price = 0
                     };

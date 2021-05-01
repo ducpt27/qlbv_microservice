@@ -35,8 +35,8 @@ namespace VeXe.Persistence
         public DbSet<DriveSchedule> DriveSchedules { get; set; }
         public DbSet<Province> Provinces { get; set; }
         
+        public DbSet<DrivePrice> DrivePrices { get; set; }
         public DbSet<DrivePoint> DrivePoints { get; set; }
-        public DbSet<DriveTime> DriveTimes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
@@ -106,9 +106,9 @@ namespace VeXe.Persistence
             modelBuilder.Entity<DriveSchedule>()
                 .HasMany(s => s.OrderItems);
             modelBuilder.Entity<DriveSchedule>()
-                .HasMany(s => s.DrivePoints);
+                .HasMany(s => s.DrivePrices);
             modelBuilder.Entity<DriveSchedule>()
-                .HasMany(s => s.DriveTimes);
+                .HasMany(s => s.DrivePoints);
             modelBuilder.Entity<DriveSchedule>()
                 .HasOne(s => s.Car);
             

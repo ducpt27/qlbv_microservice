@@ -33,7 +33,7 @@ namespace VeXe.Dto.Request.DriveSchedule
         public int Status { get; set; }
 
         [JsonProperty(PropertyName = "drive_point")]
-        public IList<DrivePointDto> DrivePoint { get; set; }
+        public IList<DrivePriceDto> DrivePrices { get; set; }
 
         [JsonProperty(PropertyName = "drive_time")]
         public IList<DriveTimeDto> DriveTime { get; set; }
@@ -68,18 +68,18 @@ namespace VeXe.Dto.Request.DriveSchedule
                     await _context.DriveSchedules.AddAsync(driveSchedule);
                     await _context.SaveChangesAsync(cancellationToken);
 
-                    if (request.DrivePoint != null && request.DrivePoint.Count > 0)
+                    if (request.DrivePrices != null && request.DrivePrices.Count > 0)
                     {
-                        foreach (var item in request.DrivePoint)
+                        foreach (var item in request.DrivePrices)
                         {
-                            var drivePoint = new DrivePoint
+                            var drivePrice = new DrivePrice
                             {
                                 Price = item.Price,
                                 DriveScheduleId = driveSchedule.Id,
                                 PointIdStart = item.PointIdStart,
                                 PointIdEnd = item.PointIdEnd
                             };
-                            await _context.DrivePoints.AddAsync(drivePoint);
+                            await _context.DrivePrices.AddAsync(drivePrice);
                         }
                     }
 
@@ -87,13 +87,13 @@ namespace VeXe.Dto.Request.DriveSchedule
                     {
                         foreach (var item in request.DriveTime)
                         {
-                            var driveTime = new DriveTime
+                            var drivePoint = new DrivePoint
                             {
                                 PointId = item.PointId,
                                 TimeStart = Convert.ToDateTime(item.TimeStart),
                                 DriveScheduleId = driveSchedule.Id,
                             };
-                            await _context.DriveTimes.AddAsync(driveTime);
+                            await _context.DrivePoints.AddAsync(drivePoint);
                         }
                     }
                     

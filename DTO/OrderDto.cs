@@ -33,11 +33,11 @@ namespace VeXe.DTO
         [JsonProperty(PropertyName = "payment_status")]
         public int PaymentStatus { get; set; }
 
-        [JsonProperty(PropertyName = "drive_point_id_start")]
-        public int DrivePointIdStart { get; set; }
+        [JsonProperty(PropertyName = "point_id_start")]
+        public int PointIdStart { get; set; }
 
-        [JsonProperty(PropertyName = "drive_point_id_end")]
-        public int DrivePointIdEnd { get; set; }
+        [JsonProperty(PropertyName = "point_id_end")]
+        public int PointIdEnd { get; set; }
 
         [JsonProperty(PropertyName = "created_by")]
         public string CreatedBy { get; set; }
