@@ -1,7 +1,10 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
 using VeXe.Persistence;
@@ -43,9 +46,11 @@ namespace VeXe.DTO.Request.Car
 
             public async Task<CarDto> Handle(EditCarReq request, CancellationToken cancellationToken)
             {
+                // var entity = await _context.Cars
+                //     .ProjectTo()<CarDto>(_mapper.ConfigurationProvider)
+                //     .Where(request.Id);
                 var entity = await _context.Cars
                     .FindAsync(request.Id);
-
                 if (entity == null)
                 {
                     throw new NotFoundException(nameof(Car), request.Id);
@@ -58,7 +63,10 @@ namespace VeXe.DTO.Request.Car
                 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return _mapper.Map<CarDto>(entity);
+                return await _context.Cars
+                    .ProjectTo<CarDto>(_mapper.ConfigurationProvider)
+                    .Where(e => e.Id == request.Id)
+                    .FirstAsync();
             }
         }
     }

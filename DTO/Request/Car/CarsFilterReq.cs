@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -27,6 +28,7 @@ namespace VeXe.Dto.Request.Car
             {
                 var carDtos = await _context.Cars
                     .ProjectTo<CarDto>(_mapper.ConfigurationProvider)
+                    .Where(e => e.Status != 2)
                     .ToListAsync(cancellationToken);
                 return carDtos;
             }

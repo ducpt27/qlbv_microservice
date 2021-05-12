@@ -79,8 +79,9 @@ namespace VeXe.Controller
 
         [HttpPost("refresh_token")]
         [Authorize]
-        public ActionResult RefreshToken([FromBody] RefreshTokenReq request)
-        {
+        public async Task<ActionResult> RefreshCookie()
+        { 
+            //TODO
             return NoContent();
         }
 
