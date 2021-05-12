@@ -15,6 +15,32 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(new CarsFilterReq());
             return Ok(vm);
         }
+        
+        [HttpGet]
+        [Authorize]
+        [Route("{id}")]
+        public async Task<ActionResult> GetOne(int id)
+        {
+            var vm = await Mediator.Send(new GetCarReq()
+            {
+                Id = id,
+                OriginId = 0
+            });
+            return Ok(vm);
+        }
+        
+        [HttpGet]
+        [Authorize]
+        [Route("origin/{id}")]
+        public async Task<ActionResult> GetOrigin(int id)
+        {
+            var vm = await Mediator.Send(new GetCarReq()
+            {
+                Id = 0,
+                OriginId = id
+            });
+            return Ok(vm);
+        }
 
         [HttpPost]
         [Authorize]

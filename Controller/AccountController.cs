@@ -84,7 +84,7 @@ namespace VeXe.Controller
             return Ok();
         }
 
-        [HttpPost("refresh-token")]
+        [HttpPost("refresh_token")]
         [Authorize]
         public async Task<ActionResult> RefreshToken([FromBody] RefreshTokenReq request)
         {
