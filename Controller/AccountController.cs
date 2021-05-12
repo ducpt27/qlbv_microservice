@@ -145,7 +145,7 @@ namespace VeXe.Controller
             });
         }
 
-        [HttpPost("stop-impersonation")]
+        [HttpPost("stop_impersonation")]
         public ActionResult StopImpersonation()
         {
             var username = User.FindFirst(ClaimTypes.Email)?.Value;
