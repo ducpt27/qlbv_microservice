@@ -27,9 +27,7 @@ namespace VeXe
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             services.AddTransient<IDateTime, MachineDateTime>();
-            services.AddSingleton<IJwtAuthManager, JwtAuthManager>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddHostedService<JwtRefreshTokenCache>();
             services.AddScoped<IUserService, UserService>();
             var serviceProvider = services.BuildServiceProvider();
             var logger = serviceProvider.GetService<ILogger<object>>();

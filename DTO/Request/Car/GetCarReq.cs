@@ -64,12 +64,10 @@ namespace VeXe.Dto.Request.Car
 
                     return _mapper.Map<CarDto>(entity2);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     throw new NotFoundException(nameof(Car), request.OriginId);
                 }
-
-                return null;
             }
         }
     }

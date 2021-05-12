@@ -64,11 +64,7 @@ namespace VeXe.Dto.Request.Point
                     await _context.Points.AddAsync(point);
                     await _context.SaveChangesAsync(cancellationToken);
                     return _mapper.Map<PointDto>(point);
-                    if (point == null)
-                    {
-                        throw new BadRequestException("Có lỗi xảy ra");
-                    }
-                    
+
                     // route.OriginId = request.OriginId == 0 ? route.Id : request.OriginId;
                     // if (request.PointIds == null || request.PointIds.Length <= 0) 
                     //     return _mapper.Map<RouteDto>(route);

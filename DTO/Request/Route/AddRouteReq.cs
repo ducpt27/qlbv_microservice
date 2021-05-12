@@ -73,7 +73,7 @@ namespace VeXe.DTO.Request.Route
                         await _context.SaveChangesAsync(cancellationToken);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     throw new BadRequestException("Có lỗi xảy ra");
                 }

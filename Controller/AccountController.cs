@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -22,18 +23,16 @@ namespace VeXe.Controller
     {
         private readonly ILogger<AccountController> _logger;
         private readonly IUserService _userService;
-        private readonly IJwtAuthManager _jwtAuthManager;
 
-        public AccountController(ILogger<AccountController> logger, IUserService userService, IJwtAuthManager jwtAuthManager)
+        public AccountController(ILogger<AccountController> logger, IUserService userService)
         {
             _logger = logger;
             _userService = userService;
-            _jwtAuthManager = jwtAuthManager;
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
-        public ActionResult Login([FromBody] LoginReq request)
+        public async Task<ActionResult> Login([FromBody] LoginReq request)
         {
             if (!ModelState.IsValid)
             {
@@ -53,14 +52,10 @@ namespace VeXe.Controller
                 new Claim(ClaimTypes.Role, role)
             };
 
-            var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
-            return Ok(new LoginResp
-            {
-                UserName = request.UserName,
-                Role = role,
-                AccessToken = jwtResult.AccessToken,
-                RefreshToken = jwtResult.RefreshToken.TokenString
-            });
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+            
+            return NoContent();
         }
 
         [HttpGet("user")]
@@ -76,43 +71,17 @@ namespace VeXe.Controller
 
         [HttpPost("logout")]
         [Authorize]
-        public ActionResult Logout()
+        public async Task<ActionResult> Logout()
         {
-            var userName = User.Identity?.Name;
-            _jwtAuthManager.RemoveRefreshTokenByUserName(userName);
-            _logger.LogInformation($"User [{userName}] logged out the system.");
-            return Ok();
+            await HttpContext.SignOutAsync();
+            return NoContent();
         }
 
         [HttpPost("refresh_token")]
         [Authorize]
-        public async Task<ActionResult> RefreshToken([FromBody] RefreshTokenReq request)
+        public ActionResult RefreshToken([FromBody] RefreshTokenReq request)
         {
-            try
-            {
-                var userName = User.Identity?.Name;
-                _logger.LogInformation($"User [{userName}] is trying to refresh JWT token.");
-
-                if (string.IsNullOrWhiteSpace(request.RefreshToken))
-                {
-                    return Unauthorized();
-                }
-
-                var accessToken = await HttpContext.GetTokenAsync("Bearer", "access_token");
-                var jwtResult = _jwtAuthManager.Refresh(request.RefreshToken, accessToken, DateTime.Now);
-                _logger.LogInformation($"User [{userName}] has refreshed JWT token.");
-                return Ok(new LoginResp
-                {
-                    UserName = userName,
-                    Role = User.FindFirst(ClaimTypes.Role)?.Value ?? string.Empty,
-                    AccessToken = jwtResult.AccessToken,
-                    RefreshToken = jwtResult.RefreshToken.TokenString
-                });
-            }
-            catch (SecurityTokenException e)
-            {
-                return Unauthorized(e.Message); // return 401 so that the client side can redirect the user to login page
-            }
+            return NoContent();
         }
 
         [HttpPost("impersonation")]
@@ -135,13 +104,13 @@ namespace VeXe.Controller
                 new Claim(ClaimTypes.Role, impersonatedRole)
             };
 
-            var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
+            // var jwtResult = _jwtAuthManager.GenerateTokens(request.UserName, claims, DateTime.Now);
             return Ok(new LoginResp
             {
                 UserName = request.UserName,
                 Role = impersonatedRole,
-                AccessToken = jwtResult.AccessToken,
-                RefreshToken = jwtResult.RefreshToken.TokenString
+                // AccessToken = jwtResult.AccessToken,
+                // RefreshToken = jwtResult.RefreshToken.TokenString
             });
         }
 
@@ -161,13 +130,13 @@ namespace VeXe.Controller
                 new Claim(ClaimTypes.Role, role)
             };
 
-            var jwtResult = _jwtAuthManager.GenerateTokens(username, claims, DateTime.Now);
+            // var jwtResult = _jwtAuthManager.GenerateTokens(username, claims, DateTime.Now);
             return Ok(new LoginResp
             {
                 UserName = username,
                 Role = role,
-                AccessToken = jwtResult.AccessToken,
-                RefreshToken = jwtResult.RefreshToken.TokenString
+                // AccessToken = jwtResult.AccessToken,
+                // RefreshToken = jwtResult.RefreshToken.TokenString
             });
         }
     }
