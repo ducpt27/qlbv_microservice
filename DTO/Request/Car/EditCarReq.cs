@@ -46,9 +46,6 @@ namespace VeXe.DTO.Request.Car
 
             public async Task<CarDto> Handle(EditCarReq request, CancellationToken cancellationToken)
             {
-                // var entity = await _context.Cars
-                //     .ProjectTo()<CarDto>(_mapper.ConfigurationProvider)
-                //     .Where(request.Id);
                 var entity = await _context.Cars
                     .FindAsync(request.Id);
                 if (entity == null)

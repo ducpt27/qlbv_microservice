@@ -30,15 +30,6 @@ namespace VeXe.Dto.Request.User
         public string BirthDate { get; set; }
         public int Status { get; set; }
 
-        [JsonProperty(PropertyName = "created_by")]
-        public string CreatedBy { get; set; }
-        [JsonProperty(PropertyName = "created_on")]
-        public string CreatedOn { get; set; }
-        [JsonProperty(PropertyName = "modified_by")]
-        public string ModifiedBy { get; set; }
-        [JsonProperty(PropertyName = "modified_on")]
-        public string ModifiedOn { get; set; }
-
 
         public class AddUserHandler : IRequestHandler<AddUserReq, UserDto>
         {
