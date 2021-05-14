@@ -27,10 +27,10 @@ namespace VeXe.DTO
         public string ModifiedBy { get; set; }
         [JsonProperty(PropertyName = "modified_on")]
         public string ModifiedOn { get; set; }
-        
+
         [JsonProperty(PropertyName = "route_points")]
         public IList<RoutePointDto> RoutePoints { get; set; }
-        
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Route, RouteDto>()

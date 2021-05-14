@@ -17,8 +17,7 @@ namespace VeXe.DTO
         public int ProvinceId { get; set; }
         [JsonProperty(PropertyName = "district_id")]
         public int DistrictId { get; set; }
-        
-        
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Ward, WardDto>()

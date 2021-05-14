@@ -11,9 +11,9 @@ using VeXe.Persistence;
 
 namespace VeXe.Dto.Request.Car
 {
-    public class CarsFilterReq: IRequest<List<CarDto>>
+    public class CarsFilterReq : IRequest<List<CarDto>>
     {
-        public class CarsFilterHandler: IRequestHandler<CarsFilterReq, List<CarDto>>
+        public class CarsFilterHandler : IRequestHandler<CarsFilterReq, List<CarDto>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;

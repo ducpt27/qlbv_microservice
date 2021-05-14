@@ -15,7 +15,7 @@ namespace VeXe.Domain
         public int ProvinceId { get; set; }
         [Column("district_id")]
         public int DistrictId { get; set; }
-        public District District { get; set; }
-    
+        //public District District { get; set; }
+
     }
 }

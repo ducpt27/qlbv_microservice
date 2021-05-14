@@ -8,19 +8,19 @@ using VeXe.Domain;
 
 namespace VeXe.DTO
 {
-    public class DriveTimeDto: IMapFrom<DrivePoint>
+    public class DriveTimeDto : IMapFrom<DrivePoint>
     {
-        [JsonProperty(PropertyName ="id")]
+        [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
-        [JsonProperty(PropertyName ="drive_schedule_id")]
+        [JsonProperty(PropertyName = "drive_schedule_id")]
         public int DriveScheduleId { get; set; }
-        [JsonProperty(PropertyName ="point_id")]
+        [JsonProperty(PropertyName = "point_id")]
         [Required]
         public int PointId { get; set; }
-        [JsonProperty(PropertyName ="time_start")]
+        [JsonProperty(PropertyName = "time_start")]
         [Required]
         public string TimeStart { get; set; }
-         
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<DrivePoint, DriveTimeDto>()

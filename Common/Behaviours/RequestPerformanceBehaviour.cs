@@ -33,7 +33,7 @@ namespace VeXe.Common.Behaviours
             {
                 var name = typeof(TRequest).Name;
 
-                _logger.LogWarning("==> Request performance: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}", 
+                _logger.LogWarning("==> Request performance: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@Request}",
                     name, _timer.ElapsedMilliseconds, _currentUserService.Username, request);
             }
 

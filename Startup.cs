@@ -38,9 +38,11 @@ namespace VeXe
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
 
-            services.AddAuthentication(options => { 
-                options.DefaultScheme = "Cookies"; 
-            }).AddCookie("Cookies", options => {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+            }).AddCookie("Cookies", options =>
+            {
                 options.Cookie.Name = "auth_cookie";
                 options.Cookie.HttpOnly = false;
                 options.Events = new CookieAuthenticationEvents()
@@ -50,7 +52,7 @@ namespace VeXe
                         redirectContext.HttpContext.Response.StatusCode = 401;
                         return Task.CompletedTask;
                     }
-                };                
+                };
             });
 
             services.AddCors(options =>

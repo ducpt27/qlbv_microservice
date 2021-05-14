@@ -31,8 +31,8 @@ namespace VeXe.DTO.Request.Car
         public string Note { get; set; }
         [JsonProperty(PropertyName = "status")]
         public int Status { get; set; }
-        
-        public class EditCarHandler: IRequestHandler<EditCarReq, CarDto>
+
+        public class EditCarHandler : IRequestHandler<EditCarReq, CarDto>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -60,7 +60,7 @@ namespace VeXe.DTO.Request.Car
                 entity.Status = request.Status;
                 entity.Note = request.Note;
                 entity.OriginId = request.OriginId;
-                
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return await _context.Cars

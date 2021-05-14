@@ -17,7 +17,7 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(req);
             return Ok(vm);
         }
-        
+
         [HttpPut]
         [Authorize]
         [Route("{id}")]

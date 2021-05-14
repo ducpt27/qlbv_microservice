@@ -96,7 +96,7 @@ namespace VeXe.Dto.Request.DriveSchedule
                             await _context.DrivePoints.AddAsync(drivePoint);
                         }
                     }
-                    
+
                     await _context.SaveChangesAsync(cancellationToken);
                     transaction.Commit();
                     return _mapper.Map<DriveScheduleDto>(driveSchedule);

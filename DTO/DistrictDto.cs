@@ -14,11 +14,11 @@ namespace VeXe.DTO
         public string Name { get; set; }
         [JsonProperty(PropertyName = "prefix")]
         public string Prefix { get; set; }
-        [JsonProperty(PropertyName ="province_id")]
+        [JsonProperty(PropertyName = "province_id")]
         public int ProvinceId { get; set; }
-        
-        public IList<WardDto> Wards { get; set; }
-        
+
+        //public IList<WardDto> Wards { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<District, DistrictDto>()

@@ -38,7 +38,7 @@ namespace VeXe.DTO
         public string ModifiedBy { get; set; }
         [JsonProperty(PropertyName = "modified_on")]
         public string ModifiedOn { get; set; }
-        
+
         [JsonProperty(PropertyName = "drive_point")]
         public IList<DrivePriceDto> DrivePrices { get; set; }
         [JsonProperty(PropertyName = "drive_time")]
@@ -47,7 +47,7 @@ namespace VeXe.DTO
         public IList<OrderItemDto> OrderItems { get; set; }
         [JsonProperty(PropertyName = "car")]
         public CarDto Car { get; set; }
-         
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<DriveSchedule, DriveScheduleDto>()

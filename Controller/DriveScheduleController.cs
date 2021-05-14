@@ -15,7 +15,7 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(new DriveScheduleFilterReq());
             return Ok(vm);
         }
-        
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> AddOne([FromBody] AddDriveScheduleReq req)

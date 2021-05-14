@@ -20,11 +20,11 @@ namespace VeXe.DTO.Request.Route
         [Required]
         [JsonPropertyName("status")]
         public int Status { get; set; }
-        
+
         [JsonPropertyName("origin_id")]
         public int OriginId { get; set; }
-        
-        public int[] PointIds  { get; set; }
+
+        public int[] PointIds { get; set; }
         public class AddRouteHandler : IRequestHandler<AddRouteReq, RouteDto>
         {
             private readonly IApplicationDbContext _context;
@@ -34,7 +34,7 @@ namespace VeXe.DTO.Request.Route
                 _context = context;
                 _mapper = mapper;
             }
-    
+
             public async Task<RouteDto> Handle(AddRouteReq request, CancellationToken cancellationToken)
             {
                 var route = new Domain.Route()
@@ -42,16 +42,16 @@ namespace VeXe.DTO.Request.Route
                     Name = request.Name,
                     Status = request.Status,
                 };
-    
+
                 await _context.Routes.AddAsync(route);
                 await _context.SaveChangesAsync(cancellationToken);
                 if (route == null)
                 {
                     throw new BadRequestException("Có lỗi xảy ra");
                 }
-                
+
                 route.OriginId = request.OriginId == 0 ? route.Id : request.OriginId;
-                if (request.PointIds == null || request.PointIds.Length <= 0) 
+                if (request.PointIds == null || request.PointIds.Length <= 0)
                     return _mapper.Map<RouteDto>(route);
                 var existPointIds = request.PointIds != null && request.PointIds.Length > 0;
                 try
@@ -69,7 +69,7 @@ namespace VeXe.DTO.Request.Route
                             };
                             await _context.RoutePoints.AddAsync(routePoint);
                         }
-    
+
                         await _context.SaveChangesAsync(cancellationToken);
                     }
                 }
@@ -80,6 +80,6 @@ namespace VeXe.DTO.Request.Route
                 return _mapper.Map<RouteDto>(route);
             }
         }
-        
+
     }
 }

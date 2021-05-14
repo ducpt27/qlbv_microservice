@@ -10,7 +10,7 @@ using VeXe.Persistence;
 
 namespace VeXe.Dto.Request.DriveSchedule
 {
-    public class DriveScheduleFilterReq: IRequest<List<DriveScheduleDto>>
+    public class DriveScheduleFilterReq : IRequest<List<DriveScheduleDto>>
     {
 
         public class DriveScheduleFilterHandler : IRequestHandler<DriveScheduleFilterReq, List<DriveScheduleDto>>

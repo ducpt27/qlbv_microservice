@@ -9,7 +9,7 @@ using VeXe.Persistence;
 
 namespace VeXe.DTO.Request.Route
 {
-    public class RoutesFilterReq: IRequest<List<RouteDto>>
+    public class RoutesFilterReq : IRequest<List<RouteDto>>
     {
         public class RoutesFilterHandler : IRequestHandler<RoutesFilterReq, List<RouteDto>>
         {

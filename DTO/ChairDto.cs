@@ -12,12 +12,12 @@ namespace VeXe.DTO
         [JsonProperty(PropertyName = "car_id")]
         public int? CarId { get; set; }
         [JsonProperty(PropertyName = "row")]
-        public int Row { get; set; } 
+        public int Row { get; set; }
         [JsonProperty(PropertyName = "col")]
-        public int Col { get; set; } 
+        public int Col { get; set; }
         [JsonProperty(PropertyName = "floor")]
-        public int Floor { get; set; } 
-        
+        public int Floor { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Chair, ChairDto>()

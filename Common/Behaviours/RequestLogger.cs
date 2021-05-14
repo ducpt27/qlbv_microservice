@@ -22,7 +22,7 @@ namespace VeXe.Common.Behaviours
         {
             var name = typeof(TRequest).Name;
 
-            _logger.LogInformation("==> New request: {Name} {@UserId} {@Request}", 
+            _logger.LogInformation("==> New request: {Name} {@UserId} {@Request}",
                 name, _currentUserService.Username, JsonConvert.SerializeObject(request));
 
             return Task.CompletedTask;

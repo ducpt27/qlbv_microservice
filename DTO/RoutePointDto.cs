@@ -12,10 +12,10 @@ namespace VeXe.DTO
         public int RouteId { get; set; }
         [JsonProperty(PropertyName = "point_id")]
         public int PointId { get; set; }
-        
+
         [JsonProperty(PropertyName = "position")]
         public int Position { get; set; }
-        
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<RoutePoint, RoutePointDto>()

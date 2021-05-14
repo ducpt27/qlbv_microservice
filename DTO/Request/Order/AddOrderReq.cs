@@ -86,7 +86,7 @@ namespace VeXe.Dto.Request.Order
                     };
                     await _context.Orders.AddAsync(order);
                     await _context.SaveChangesAsync(cancellationToken);
-                    
+
                     var totalPrice = Decimal.Zero;
                     if (request.OrderItemLists == null || request.OrderItemLists.Count <= 0)
                     {
@@ -112,7 +112,7 @@ namespace VeXe.Dto.Request.Order
 
                     order.Price = totalPrice;
                     await _context.SaveChangesAsync(cancellationToken);
-                    
+
                     transaction.Commit();
                     return _mapper.Map<OrderDto>(order);
                 }

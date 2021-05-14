@@ -13,14 +13,14 @@ using VeXe.Persistence;
 
 namespace VeXe.Dto.Request.Car
 {
-    public class GetCarReq: IRequest<CarDto>
+    public class GetCarReq : IRequest<CarDto>
     {
         [JsonProperty(PropertyName = "id")] public int Id { get; set; }
 
         [JsonProperty(PropertyName = "origin_id")]
         public int OriginId { get; set; }
-        
-        public class GetCarHandler: IRequestHandler<GetCarReq, CarDto>
+
+        public class GetCarHandler : IRequestHandler<GetCarReq, CarDto>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;

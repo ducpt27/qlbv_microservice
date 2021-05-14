@@ -14,5 +14,15 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(new ProvincesFilterReq());
             return Ok(vm);
         }
+
+
+        [HttpGet]
+        [Authorize]
+        [Route("origin/{id}")]
+        public async Task<ActionResult> GetWardsByDistrict()
+        {
+            var vm = await Mediator.Send(new ProvincesFilterReq());
+            return Ok(vm);
+        }
     }
 }

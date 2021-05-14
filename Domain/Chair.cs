@@ -12,9 +12,9 @@ namespace VeXe.Domain
         [Column("car_id")]
         public int CarId { get; set; }
         [Column("row")]
-        public int Row { get; set; } 
+        public int Row { get; set; }
         [Column("col")]
-        public int Col { get; set; } 
+        public int Col { get; set; }
         [Column("floor")]
         public int Floor { get; set; }
         public Car Car { get; set; }

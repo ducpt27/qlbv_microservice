@@ -17,13 +17,13 @@ namespace VeXe.DTO.Request.Route
 
         [Required]
         public int Id { get; set; }
-        
+
         [JsonPropertyName("status")]
         public int Status { get; set; }
-        
+
         [JsonPropertyName("origin_id")]
         public int OriginId { get; set; }
-        
+
         public class EditRouteHandler : IRequestHandler<EditRouteReq, RouteDto>
         {
             private readonly IApplicationDbContext _context;
@@ -49,7 +49,7 @@ namespace VeXe.DTO.Request.Route
                 entity.Name = request.Name;
                 entity.Status = request.Status;
                 entity.OriginId = request.OriginId;
-                
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return _mapper.Map<RouteDto>(entity);

@@ -15,7 +15,7 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(new CarsFilterReq());
             return Ok(vm);
         }
-        
+
         [HttpGet]
         [Authorize]
         [Route("{id}")]
@@ -28,7 +28,7 @@ namespace VeXe.Controller
             });
             return Ok(vm);
         }
-        
+
         [HttpGet]
         [Authorize]
         [Route("origin/{id}")]

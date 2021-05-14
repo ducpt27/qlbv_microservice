@@ -16,7 +16,7 @@ namespace VeXe.Domain
         [Column("province_id")]
         public int ProvinceId { get; set; }
         public Province Province { get; set; }
-        
-        public IList<Ward> Wards { get; set; }
+
+        //public IList<Ward> Wards { get; set; }
     }
 }

@@ -12,31 +12,31 @@ namespace VeXe.Dto.Request.Point
 {
     public class EditPointReq : IRequest<PointDto>
     {
-      
+
         [JsonPropertyName("street")]
         public string Street { get; set; }
-        
+
         [Required]
         public int Id { get; set; }
         [Required]
         [JsonPropertyName("province_id")]
         public int ProvinceId { get; set; }
-        
+
         [Required]
         [JsonPropertyName("district_id")]
         public int DistrictId { get; set; }
-        
+
         [Required]
         [JsonPropertyName("ward_id")]
         public int WardId { get; set; }
-       
+
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
         [JsonPropertyName("status")]
         public int Status { get; set; }
-        
+
         public class EditPointHandler : IRequestHandler<EditPointReq, PointDto>
         {
             private readonly IApplicationDbContext _context;
@@ -65,7 +65,7 @@ namespace VeXe.Dto.Request.Point
                 entity.ProvinceId = request.ProvinceId;
                 entity.DistrictId = request.DistrictId;
                 entity.WardId = request.WardId;
-                
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return _mapper.Map<PointDto>(entity);

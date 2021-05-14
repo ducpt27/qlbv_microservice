@@ -11,7 +11,7 @@
  Target Server Version : 100408
  File Encoding         : 65001
 
- Date: 01/05/2021 23:19:51
+ Date: 14/05/2021 16:30:16
 */
 
 SET NAMES utf8mb4;
@@ -75,14 +75,32 @@ CREATE TABLE `car`  (
   `modified_on` timestamp(0) NULL DEFAULT current_timestamp(0) ON UPDATE CURRENT_TIMESTAMP(0),
   `modified_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of car
 -- ----------------------------
-INSERT INTO `car` VALUES (1, 1, 'Test', 2, 2, 5, 5, 'abc xyz', 1, '2021-04-23 22:02:41', 'admin', '2021-04-23 22:22:28', 'admin');
+INSERT INTO `car` VALUES (1, 0, 'Test 2', 2, 2, 5, 5, 'Ghi chu o day', 2, '2021-04-23 22:02:41', 'admin', '2021-05-12 23:15:51', 'admin');
 INSERT INTO `car` VALUES (2, 2, 'Test 2', 3, 1, 8, 5, 'Ghi chu o day', 0, '2021-04-23 22:30:43', 'admin', '2021-04-23 22:30:43', 'admin');
 INSERT INTO `car` VALUES (3, 3, 'Test 2', 3, 1, 8, 5, 'Ghi chu o day', 1, '2021-04-23 22:30:57', 'admin', '2021-04-23 22:30:57', 'admin');
+INSERT INTO `car` VALUES (4, 1, 'Test 2', 3, 1, 8, 5, 'Ghi chu o day', 1, '2021-05-11 22:25:06', 'admin', '2021-05-11 22:25:07', 'admin');
+INSERT INTO `car` VALUES (5, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:26:19', 'admin', '2021-05-12 22:26:20', 'admin');
+INSERT INTO `car` VALUES (6, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:26:55', 'admin', '2021-05-12 22:26:55', 'admin');
+INSERT INTO `car` VALUES (7, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:27:14', 'admin', '2021-05-12 22:27:14', 'admin');
+INSERT INTO `car` VALUES (8, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:27:41', 'admin', '2021-05-12 22:27:41', 'admin');
+INSERT INTO `car` VALUES (9, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:30:11', 'admin', '2021-05-12 22:30:11', 'admin');
+INSERT INTO `car` VALUES (10, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:30:19', 'admin', '2021-05-12 22:30:19', 'admin');
+INSERT INTO `car` VALUES (11, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:30:51', 'admin', '2021-05-12 22:30:51', 'admin');
+INSERT INTO `car` VALUES (12, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:31:53', 'admin', '2021-05-12 22:31:53', 'admin');
+INSERT INTO `car` VALUES (13, 5, '1', 0, 1, 7, 4, 'mt', 1, '2021-05-12 22:32:23', 'admin', '2021-05-12 22:32:23', 'admin');
+INSERT INTO `car` VALUES (14, 14, '21412', 0, 1, 7, 4, '4124', 1, '2021-05-12 22:32:59', 'admin', '2021-05-12 22:32:59', 'admin');
+INSERT INTO `car` VALUES (15, 15, '214', 2, 1, 2, 2, '241', 1, '2021-05-12 23:19:36', 'admin', '2021-05-12 23:19:36', 'admin');
+INSERT INTO `car` VALUES (16, 16, '214', 0, 1, 7, 4, '124', 1, '2021-05-12 23:32:50', 'admin', '2021-05-12 23:32:50', 'admin');
+INSERT INTO `car` VALUES (17, 17, '24', 1, 1, 7, 4, '1242', 1, '2021-05-12 23:34:08', 'admin', '2021-05-12 23:34:08', 'admin');
+INSERT INTO `car` VALUES (18, 17, '24', 3, 2, 7, 4, '1242', 1, '2021-05-12 23:34:18', 'admin', '2021-05-12 23:34:18', 'admin');
+INSERT INTO `car` VALUES (19, 19, '214', 2, 1, 7, 4, '214', 1, '2021-05-12 23:37:24', 'admin', '2021-05-12 23:37:24', 'admin');
+INSERT INTO `car` VALUES (20, 19, '214', 4, 2, 7, 4, '214', 1, '2021-05-12 23:37:29', 'admin', '2021-05-12 23:37:29', 'admin');
+INSERT INTO `car` VALUES (21, 19, '214', 2, 1, 7, 4, '214', 2, '2021-05-12 23:37:38', 'admin', '2021-05-12 23:38:17', 'admin');
 
 -- ----------------------------
 -- Table structure for chair
@@ -97,7 +115,7 @@ CREATE TABLE `chair`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `I_3`(`car_id`) USING BTREE,
   CONSTRAINT `I_3` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of chair
@@ -111,6 +129,23 @@ INSERT INTO `chair` VALUES (6, 2, 2, 4, b'1');
 INSERT INTO `chair` VALUES (7, 3, 1, 2, b'0');
 INSERT INTO `chair` VALUES (8, 3, 3, 3, b'0');
 INSERT INTO `chair` VALUES (9, 3, 2, 4, b'1');
+INSERT INTO `chair` VALUES (10, 4, 1, 2, b'0');
+INSERT INTO `chair` VALUES (11, 4, 3, 3, b'0');
+INSERT INTO `chair` VALUES (12, 4, 2, 4, b'1');
+INSERT INTO `chair` VALUES (13, 15, 2, 1, b'0');
+INSERT INTO `chair` VALUES (14, 15, 1, 1, b'0');
+INSERT INTO `chair` VALUES (15, 17, 6, 4, b'0');
+INSERT INTO `chair` VALUES (16, 18, 6, 4, b'0');
+INSERT INTO `chair` VALUES (17, 18, 1, 2, b'1');
+INSERT INTO `chair` VALUES (18, 18, 3, 3, b'1');
+INSERT INTO `chair` VALUES (19, 19, 2, 3, b'0');
+INSERT INTO `chair` VALUES (20, 19, 1, 2, b'0');
+INSERT INTO `chair` VALUES (21, 20, 2, 3, b'0');
+INSERT INTO `chair` VALUES (22, 20, 1, 2, b'0');
+INSERT INTO `chair` VALUES (23, 20, 1, 2, b'1');
+INSERT INTO `chair` VALUES (24, 20, 2, 3, b'1');
+INSERT INTO `chair` VALUES (25, 21, 1, 2, b'0');
+INSERT INTO `chair` VALUES (26, 21, 2, 3, b'0');
 
 -- ----------------------------
 -- Table structure for district
@@ -853,7 +888,7 @@ CREATE TABLE `drive_point`  (
   INDEX `I_POINT_1`(`point_id`) USING BTREE,
   CONSTRAINT `I_DRIVE_1` FOREIGN KEY (`drive_schedule_id`) REFERENCES `drive_schedule` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `I_POINT_1` FOREIGN KEY (`point_id`) REFERENCES `point` (`id`) ON DELETE NO ACTION ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of drive_point
@@ -868,6 +903,8 @@ INSERT INTO `drive_point` VALUES (23, 12, 1, '2021-04-26 17:00:00');
 INSERT INTO `drive_point` VALUES (24, 12, 2, '2021-04-26 18:00:00');
 INSERT INTO `drive_point` VALUES (25, 13, 1, '2021-04-26 17:00:00');
 INSERT INTO `drive_point` VALUES (26, 13, 2, '2021-04-26 18:00:00');
+INSERT INTO `drive_point` VALUES (27, 14, 1, '2021-04-26 17:00:00');
+INSERT INTO `drive_point` VALUES (28, 14, 2, '2021-04-26 18:00:00');
 
 -- ----------------------------
 -- Table structure for drive_price
@@ -886,7 +923,7 @@ CREATE TABLE `drive_price`  (
   CONSTRAINT `I_501` FOREIGN KEY (`point_id_start`) REFERENCES `point` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `I_502` FOREIGN KEY (`point_id_end`) REFERENCES `point` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `I_8` FOREIGN KEY (`drive_schedule_id`) REFERENCES `drive_schedule` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of drive_price
@@ -896,6 +933,7 @@ INSERT INTO `drive_price` VALUES (10, 50000.00, 10, 2, 3);
 INSERT INTO `drive_price` VALUES (11, 50000.00, 11, 2, 3);
 INSERT INTO `drive_price` VALUES (12, 50000.00, 12, 2, 3);
 INSERT INTO `drive_price` VALUES (13, 50000.00, 13, 2, 3);
+INSERT INTO `drive_price` VALUES (14, 50000.00, 14, 2, 3);
 
 -- ----------------------------
 -- Table structure for drive_schedule
@@ -925,7 +963,7 @@ CREATE TABLE `drive_schedule`  (
   CONSTRAINT `I_ROUTE_1` FOREIGN KEY (`route_id`) REFERENCES `route` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   CONSTRAINT `I_USER_!` FOREIGN KEY (`user_1`) REFERENCES `user` (`email`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `I_USER_2` FOREIGN KEY (`user_2`) REFERENCES `user` (`email`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of drive_schedule
@@ -935,6 +973,7 @@ INSERT INTO `drive_schedule` VALUES (10, 'ducpham27.it@gmail.com', NULL, 1, 1, 1
 INSERT INTO `drive_schedule` VALUES (11, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, 120000.00, 'Phát súng thứ 2', 0, 1, '2021-04-25 17:07:41', 'admin', '2021-04-25 17:07:41', 'admin');
 INSERT INTO `drive_schedule` VALUES (12, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, 120000.00, 'Phát súng thứ 2', 0, 1, '2021-04-25 17:08:19', 'admin', '2021-04-25 17:08:19', 'admin');
 INSERT INTO `drive_schedule` VALUES (13, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, 120000.00, 'Phát súng thứ 2', 0, 1, '2021-04-25 17:15:09', 'admin', '2021-04-25 17:15:09', 'admin');
+INSERT INTO `drive_schedule` VALUES (14, 'ducpham27.it@gmail.com', NULL, 1, 1, 120, 120000.00, 'Phát súng thứ 2', 0, 1, '2021-05-01 23:22:53', 'admin', '2021-05-01 23:22:53', 'admin');
 
 -- ----------------------------
 -- Table structure for order_item

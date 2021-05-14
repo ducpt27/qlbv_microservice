@@ -12,7 +12,7 @@ namespace VeXe.Dto.Request.Province
 {
     public class ProvincesFilterReq : IRequest<List<ProvinceDto>>
     {
-        public class ProvincesFilterHandler: IRequestHandler<ProvincesFilterReq, List<ProvinceDto>>
+        public class ProvincesFilterHandler : IRequestHandler<ProvincesFilterReq, List<ProvinceDto>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;

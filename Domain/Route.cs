@@ -8,21 +8,21 @@ using VeXe.DTO.Request.Route;
 namespace VeXe.Domain
 {
     [Table("route")]
-    public class Route :AuditableEntity
+    public class Route : AuditableEntity
     {
         [Key]
         public int Id { get; set; }
-        
+
         [Column("origin_id")]
         public int OriginId { get; set; }
-        
+
         public string Name { get; set; }
-        
+
         public int Status { get; set; }
-        
+
         public IList<RoutePoint> RoutePoints { get; set; }
-        
+
     }
-    
-    
+
+
 }

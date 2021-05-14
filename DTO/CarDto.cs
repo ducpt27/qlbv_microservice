@@ -36,10 +36,10 @@ namespace VeXe.DTO
         public string ModifiedBy { get; set; }
         [JsonProperty(PropertyName = "modified_on")]
         public string ModifiedOn { get; set; }
-        
+
         [JsonProperty(PropertyName = "chairs")]
-        public IList<ChairDto> Chairs { get; set; } 
-        
+        public IList<ChairDto> Chairs { get; set; }
+
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Car, CarDto>()

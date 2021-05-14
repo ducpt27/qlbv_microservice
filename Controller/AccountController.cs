@@ -54,7 +54,7 @@ namespace VeXe.Controller
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-            
+
             return NoContent();
         }
 
@@ -80,7 +80,7 @@ namespace VeXe.Controller
         [HttpPost("refresh_token")]
         [Authorize]
         public async Task<ActionResult> RefreshCookie()
-        { 
+        {
             //TODO
             return NoContent();
         }
@@ -142,5 +142,5 @@ namespace VeXe.Controller
         }
     }
 
-    
+
 }
