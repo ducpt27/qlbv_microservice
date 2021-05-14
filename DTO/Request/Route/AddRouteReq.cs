@@ -49,8 +49,10 @@ namespace VeXe.DTO.Request.Route
                 {
                     throw new BadRequestException("Có lỗi xảy ra");
                 }
-
                 route.OriginId = request.OriginId == 0 ? route.Id : request.OriginId;
+
+                await _context.SaveChangesAsync(cancellationToken);
+
                 if (request.PointIds == null || request.PointIds.Length <= 0)
                     return _mapper.Map<RouteDto>(route);
                 var existPointIds = request.PointIds != null && request.PointIds.Length > 0;

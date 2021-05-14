@@ -24,8 +24,41 @@ namespace VeXe.Controller
         public async Task<ActionResult> EditOne(int id, [FromBody] EditPointReq req)
         {
             req.Id = id;
-            // Console.WriteLine("id " + id);
             var vm = await Mediator.Send(req);
+            return Ok(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult> GetList()
+        {
+            var vm = await Mediator.Send(new PointsFilterReq());
+            return Ok(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("{id}")]
+        public async Task<ActionResult> GetOne(int id)
+        {
+            var vm = await Mediator.Send(new GetPointReq()
+            {
+                Id = id,
+                OriginId = 0
+            });
+            return Ok(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("origin/{id}")]
+        public async Task<ActionResult> GetOrigin(int id)
+        {
+            var vm = await Mediator.Send(new GetPointReq()
+            {
+                Id = 0,
+                OriginId = id
+            });
             return Ok(vm);
         }
     }

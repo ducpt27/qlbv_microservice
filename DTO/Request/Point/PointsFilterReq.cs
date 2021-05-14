@@ -9,25 +9,25 @@ using Microsoft.EntityFrameworkCore;
 using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Car
+namespace VeXe.Dto.Request.Point
 {
-    public class PointsFilterReq : IRequest<List<CarDto>>
+    public class PointsFilterReq : IRequest<List<PointDto>>
     {
-        public class CarsFilterHandler : IRequestHandler<PointsFilterReq, List<CarDto>>
+        public class PointsFilterHandler : IRequestHandler<PointsFilterReq, List<PointDto>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
 
-            public CarsFilterHandler(IApplicationDbContext context, IMapper mapper)
+            public PointsFilterHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context;
                 _mapper = mapper;
             }
 
-            public async Task<List<CarDto>> Handle(PointsFilterReq request, CancellationToken cancellationToken)
+            public async Task<List<PointDto>> Handle(PointsFilterReq request, CancellationToken cancellationToken)
             {
-                var carDtos = await _context.Cars
-                    .ProjectTo<CarDto>(_mapper.ConfigurationProvider)
+                var carDtos = await _context.Points
+                    .ProjectTo<PointDto>(_mapper.ConfigurationProvider)
                     .Where(e => e.Status != 2)
                     .ToListAsync(cancellationToken);
                 return carDtos;

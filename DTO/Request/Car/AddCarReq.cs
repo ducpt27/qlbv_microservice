@@ -67,6 +67,7 @@ namespace VeXe.DTO.Request.Car
                 await _context.SaveChangesAsync(cancellationToken);
 
                 car.OriginId = request.OriginId == 0 ? car.Id : request.OriginId;
+
                 if (request.Chairs != null || request.Chairs.Count > 0)
                 {
                     foreach (var chairReq in request.Chairs)

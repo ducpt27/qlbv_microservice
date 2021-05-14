@@ -9,6 +9,9 @@ namespace VeXe.Domain
     {
         [Key] public int Id { get; set; }
 
+        [Column("origin_id")]
+        public int OriginId { get; set; }
+
         [Column("name")] public string Name { get; set; }
 
         [Column("street")] public string Street { get; set; }

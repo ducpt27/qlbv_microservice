@@ -11,40 +11,40 @@ using VeXe.Common.Exceptions;
 using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Car
+namespace VeXe.Dto.Request.Point
 {
-    public class GetPointReq : IRequest<CarDto>
+    public class GetPointReq : IRequest<PointDto>
     {
         [JsonProperty(PropertyName = "id")] public int Id { get; set; }
 
         [JsonProperty(PropertyName = "origin_id")]
         public int OriginId { get; set; }
 
-        public class GetCarHandler : IRequestHandler<GetPointReq, CarDto>
+        public class GetPointHandler : IRequestHandler<GetPointReq, PointDto>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
 
-            public GetCarHandler(IApplicationDbContext context, IMapper mapper)
+            public GetPointHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context;
                 _mapper = mapper;
             }
 
-            public async Task<CarDto> Handle(GetPointReq request, CancellationToken cancellationToken)
+            public async Task<PointDto> Handle(GetPointReq request, CancellationToken cancellationToken)
             {
                 if (request.Id != 0)
                 {
-                    var entity = await _context.Cars
-                        .ProjectTo<CarDto>(_mapper.ConfigurationProvider)
+                    var entity = await _context.Points
+                        .ProjectTo<PointDto>(_mapper.ConfigurationProvider)
                         .Where(s => s.Id == request.Id)
                         .OrderByDescending(o => o.Id)
                         .FirstAsync();
                     if (entity == null)
                     {
-                        throw new NotFoundException(nameof(Car), request.Id);
+                        throw new NotFoundException(nameof(Point), request.Id);
                     }
-                    return _mapper.Map<CarDto>(entity);
+                    return _mapper.Map<PointDto>(entity);
                 }
 
                 if (request.OriginId == 0) return null;
@@ -52,21 +52,21 @@ namespace VeXe.Dto.Request.Car
                 try
                 {
 
-                    var entity2 = await _context.Cars
-                        .ProjectTo<CarDto>(_mapper.ConfigurationProvider)
+                    var entity2 = await _context.Points
+                        .ProjectTo<PointDto>(_mapper.ConfigurationProvider)
                         .Where(s => s.OriginId == request.OriginId)
                         .OrderByDescending(o => o.Id)
                         .FirstAsync();
                     if (entity2 == null)
                     {
-                        throw new NotFoundException(nameof(Car), request.OriginId);
+                        throw new NotFoundException(nameof(Point), request.OriginId);
                     }
 
-                    return _mapper.Map<CarDto>(entity2);
+                    return _mapper.Map<PointDto>(entity2);
                 }
                 catch (Exception)
                 {
-                    throw new NotFoundException(nameof(Car), request.OriginId);
+                    throw new NotFoundException(nameof(Point), request.OriginId);
                 }
             }
         }

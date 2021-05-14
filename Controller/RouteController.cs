@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request;
+using VeXe.Dto.Request.Route;
 using VeXe.DTO.Request.Route;
 
 namespace VeXe.Controller
@@ -19,6 +19,33 @@ namespace VeXe.Controller
             return Ok(vm);
         }
 
+        [HttpGet]
+        [Authorize]
+        [Route("{id}")]
+        public async Task<ActionResult> GetOne(int id)
+        {
+            var vm = await Mediator.Send(new GetRouteReq()
+            {
+                Id = id,
+                OriginId = 0
+            });
+            return Ok(vm);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("origin/{id}")]
+        public async Task<ActionResult> GetOrigin(int id)
+        {
+            var vm = await Mediator.Send(new GetRouteReq()
+            {
+                Id = 0,
+                OriginId = id
+            });
+            return Ok(vm);
+        }
+
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> AddOne([FromBody] AddRouteReq req)
@@ -26,6 +53,7 @@ namespace VeXe.Controller
             var vm = await Mediator.Send(req);
             return Ok(vm);
         }
+
         [HttpPut]
         [Authorize]
         [Route("{id}")]

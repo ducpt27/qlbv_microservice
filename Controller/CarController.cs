@@ -12,7 +12,7 @@ namespace VeXe.Controller
         [Authorize]
         public async Task<ActionResult> GetList()
         {
-            var vm = await Mediator.Send(new CarsFilterReq());
+            var vm = await Mediator.Send(new PointsFilterReq());
             return Ok(vm);
         }
 
@@ -21,7 +21,7 @@ namespace VeXe.Controller
         [Route("{id}")]
         public async Task<ActionResult> GetOne(int id)
         {
-            var vm = await Mediator.Send(new GetCarReq()
+            var vm = await Mediator.Send(new GetPointReq()
             {
                 Id = id,
                 OriginId = 0
@@ -34,7 +34,7 @@ namespace VeXe.Controller
         [Route("origin/{id}")]
         public async Task<ActionResult> GetOrigin(int id)
         {
-            var vm = await Mediator.Send(new GetCarReq()
+            var vm = await Mediator.Send(new GetPointReq()
             {
                 Id = 0,
                 OriginId = id
