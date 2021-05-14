@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -8,10 +7,9 @@ using MediatR;
 using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
 using VeXe.Domain;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.DriveSchedule
+namespace VeXe.DTO.Request.DriveSchedule
 {
     public class AddDriveScheduleReq : IRequest<DriveScheduleDto>
     {

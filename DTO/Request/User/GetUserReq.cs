@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -8,10 +7,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.User
+namespace VeXe.DTO.Request.User
 {
     public class GetUserReq : IRequest<UserDto>
     {

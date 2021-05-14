@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using VeXe.Common;
 using VeXe.Common.Behaviours;
-using VeXe.Common.Infrastructure;
 using VeXe.Persistence;
 using VeXe.Service;
 using VeXe.Service.impl;

@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using VeXe.Common;
 using VeXe.Domain;
-using VeXe.DTO;
 using VeXe.Service;
-using System.Data;
 
 namespace VeXe.Persistence
 {

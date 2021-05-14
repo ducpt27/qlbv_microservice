@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VeXe.Service
+﻿namespace VeXe.Service
 {
     public interface ICurrentUserService
     {

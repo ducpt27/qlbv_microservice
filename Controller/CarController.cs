@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request.Car;
 using VeXe.DTO.Request.Car;
 
 namespace VeXe.Controller

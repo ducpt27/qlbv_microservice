@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using VeXe.Common.Mapping;
-using VeXe.Dto.Request;
-using VeXe.DTO.Request.Route;
 
 namespace VeXe.Domain
 {

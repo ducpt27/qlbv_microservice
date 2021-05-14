@@ -5,10 +5,9 @@ using AutoMapper;
 using MediatR;
 using Newtonsoft.Json;
 using BC = BCrypt.Net.BCrypt;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.User
+namespace VeXe.DTO.Request.User
 {
     public class AddUserReq : IRequest<UserDto>
     {

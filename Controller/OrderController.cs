@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request.Order;
+using VeXe.DTO.Request.Order;
 
 namespace VeXe.Controller
 {

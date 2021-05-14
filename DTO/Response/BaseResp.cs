@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace VeXe.Dto.Response
+namespace VeXe.DTO.Response
 {
     public class BaseResp
     {

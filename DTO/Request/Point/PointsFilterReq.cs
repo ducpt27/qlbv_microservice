@@ -6,10 +6,9 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Point
+namespace VeXe.DTO.Request.Point
 {
     public class PointsFilterReq : IRequest<List<PointDto>>
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request.DriveSchedule;
+using VeXe.DTO.Request.DriveSchedule;
 
 namespace VeXe.Controller
 {

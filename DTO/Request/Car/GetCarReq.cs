@@ -8,10 +8,9 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Car
+namespace VeXe.DTO.Request.Car
 {
     public class GetCarReq : IRequest<CarDto>
     {

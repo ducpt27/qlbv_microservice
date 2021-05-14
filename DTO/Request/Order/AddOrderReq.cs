@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
-using VeXe.Domain;
-using VeXe.DTO;
 using VeXe.DTO.Request.Order.OrderItem;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Order
+namespace VeXe.DTO.Request.Order
 {
     public class AddOrderReq : IRequest<OrderDto>
     {
@@ -84,7 +80,7 @@ namespace VeXe.Dto.Request.Order
                         Code = request.Mobile,
                         Price = 0
                     };
-                    await _context.Orders.AddAsync(order);
+                    await _context.Orders.AddAsync(order, cancellationToken);
                     await _context.SaveChangesAsync(cancellationToken);
 
                     var totalPrice = Decimal.Zero;
@@ -96,9 +92,9 @@ namespace VeXe.Dto.Request.Order
                     {
                         foreach (var item in request.OrderItemLists)
                         {
-                            checkChair(item.ChairId, order.DriveScheduleId);
+                            CheckChair(item.ChairId, order.DriveScheduleId);
                             totalPrice = Decimal.Add(totalPrice, item.Price);
-                            var orderItem = new OrderItem()
+                            var orderItem = new Domain.OrderItem()
                             {
                                 Discount = item.Discount,
                                 Price = item.Price,
@@ -122,7 +118,7 @@ namespace VeXe.Dto.Request.Order
                 }
             }
 
-            public void checkChair(int chairId, int driveScheduleId)
+            public void CheckChair(int chairId, int driveScheduleId)
             {
                 var orderItem = _context.OrderItems.SingleOrDefault(i =>
                     i.ChairId == chairId && i.DriveScheduleId == driveScheduleId);

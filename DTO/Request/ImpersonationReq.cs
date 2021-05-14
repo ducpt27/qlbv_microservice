@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace VeXe.Dto.Request
+namespace VeXe.DTO.Request
 {
     public class ImpersonationRequest
     {

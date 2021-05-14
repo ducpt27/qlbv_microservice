@@ -5,10 +5,9 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Province
+namespace VeXe.DTO.Request.Province
 {
     public class ProvincesFilterReq : IRequest<List<ProvinceDto>>
     {

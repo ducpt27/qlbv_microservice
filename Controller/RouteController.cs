@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using MediatR;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request.Route;
 using VeXe.DTO.Request.Route;
 
 namespace VeXe.Controller

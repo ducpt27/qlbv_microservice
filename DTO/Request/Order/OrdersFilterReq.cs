@@ -5,10 +5,9 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Order
+namespace VeXe.DTO.Request.Order
 {
     public class OrdersFilterReq : IRequest<List<OrderDto>>
     {

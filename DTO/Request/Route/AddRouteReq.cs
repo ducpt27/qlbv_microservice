@@ -1,10 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
 using VeXe.Domain;
 using VeXe.Persistence;

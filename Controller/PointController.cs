@@ -3,7 +3,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request.Point;
+using VeXe.DTO.Request.Point;
 
 
 namespace VeXe.Controller

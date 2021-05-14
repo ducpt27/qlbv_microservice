@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AutoMapper;
+﻿using AutoMapper;
 using Newtonsoft.Json;
 using VeXe.Common.Mapping;
 using VeXe.Domain;
