@@ -22,23 +22,23 @@ namespace VeXe.Dto.Request.Point
         [JsonProperty(PropertyName = "street")]
         public string Street { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "province_id")]
         public int ProvinceId { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "district_id")]
         public int DistrictId { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "ward_id")]
         public int WardId { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "status")]
         public int Status { get; set; }
 

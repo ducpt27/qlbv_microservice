@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using Newtonsoft.Json;
 using VeXe.Common.Exceptions;
 using VeXe.DTO;
 using VeXe.Persistence;
@@ -16,24 +17,24 @@ namespace VeXe.Dto.Request.Point
         [JsonPropertyName("street")]
         public string Street { get; set; }
 
-        [Required]
+        [JsonRequired]
         public int Id { get; set; }
-        [Required]
+        [JsonRequired]
         [JsonPropertyName("province_id")]
         public int ProvinceId { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonPropertyName("district_id")]
         public int DistrictId { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonPropertyName("ward_id")]
         public int WardId { get; set; }
 
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonPropertyName("status")]
         public int Status { get; set; }
 

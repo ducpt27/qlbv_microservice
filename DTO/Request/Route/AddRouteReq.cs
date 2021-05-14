@@ -13,11 +13,11 @@ namespace VeXe.DTO.Request.Route
 {
     public class AddRouteReq : IRequest<RouteDto>
     {
-        [Required]
+        [JsonRequired]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonPropertyName("status")]
         public int Status { get; set; }
 

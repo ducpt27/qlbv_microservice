@@ -9,28 +9,28 @@ using Microsoft.EntityFrameworkCore;
 using VeXe.DTO;
 using VeXe.Persistence;
 
-namespace VeXe.Dto.Request.Car
+namespace VeXe.Dto.Request.User
 {
-    public class CarsFilterReq : IRequest<List<CarDto>>
+    public class UsersFilterReq : IRequest<List<UserDto>>
     {
-        public class CarsFilterHandler : IRequestHandler<CarsFilterReq, List<CarDto>>
+        public class UsersFilterHandler : IRequestHandler<UsersFilterReq, List<UserDto>>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
 
-            public CarsFilterHandler(IApplicationDbContext context, IMapper mapper)
+            public UsersFilterHandler(IApplicationDbContext context, IMapper mapper)
             {
                 _context = context;
                 _mapper = mapper;
             }
 
-            public async Task<List<CarDto>> Handle(CarsFilterReq request, CancellationToken cancellationToken)
+            public async Task<List<UserDto>> Handle(UsersFilterReq request, CancellationToken cancellationToken)
             {
-                var carDtos = await _context.Cars
-                    .ProjectTo<CarDto>(_mapper.ConfigurationProvider)
+                var dtos = await _context.Users
+                    .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                     .Where(e => e.Status != 2)
                     .ToListAsync(cancellationToken);
-                return carDtos;
+                return dtos;
             }
         }
     }

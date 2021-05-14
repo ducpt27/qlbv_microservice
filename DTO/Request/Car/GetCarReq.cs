@@ -13,14 +13,14 @@ using VeXe.Persistence;
 
 namespace VeXe.Dto.Request.Car
 {
-    public class GetPointReq : IRequest<CarDto>
+    public class GetCarReq : IRequest<CarDto>
     {
         [JsonProperty(PropertyName = "id")] public int Id { get; set; }
 
         [JsonProperty(PropertyName = "origin_id")]
         public int OriginId { get; set; }
 
-        public class GetCarHandler : IRequestHandler<GetPointReq, CarDto>
+        public class GetCarHandler : IRequestHandler<GetCarReq, CarDto>
         {
             private readonly IApplicationDbContext _context;
             private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ namespace VeXe.Dto.Request.Car
                 _mapper = mapper;
             }
 
-            public async Task<CarDto> Handle(GetPointReq request, CancellationToken cancellationToken)
+            public async Task<CarDto> Handle(GetCarReq request, CancellationToken cancellationToken)
             {
                 if (request.Id != 0)
                 {

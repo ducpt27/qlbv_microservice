@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -17,19 +18,28 @@ namespace VeXe.Dto.Request.DriveSchedule
         [JsonProperty(PropertyName = "user1")] public string User1 { get; set; }
         [JsonProperty(PropertyName = "user2")] public string User2 { get; set; }
 
+        [JsonRequired]
+
         [JsonProperty(PropertyName = "route_id")]
         public int RouteId { get; set; }
+
+        [JsonRequired]
 
         [JsonProperty(PropertyName = "car_id")]
         public int CarId { get; set; }
 
+        [JsonRequired]
+
         [JsonProperty(PropertyName = "total_time")]
         public int TotalTime { get; set; }
+
+        [JsonRequired]
 
         [JsonProperty(PropertyName = "price")] public decimal Price { get; set; }
         [JsonProperty(PropertyName = "note")] public string Note { get; set; }
 
         [JsonProperty(PropertyName = "status")]
+        [JsonRequired]
         public int Status { get; set; }
 
         [JsonProperty(PropertyName = "drive_point")]

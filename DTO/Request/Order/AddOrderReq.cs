@@ -18,11 +18,11 @@ namespace VeXe.Dto.Request.Order
 {
     public class AddOrderReq : IRequest<OrderDto>
     {
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "drive_schedule_id")]
         public int DriveScheduleId { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "discount")]
         public decimal Discount { get; set; }
 
@@ -34,23 +34,23 @@ namespace VeXe.Dto.Request.Order
 
         [JsonProperty(PropertyName = "age")] public int Age { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "status")]
         public int Status { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "payment_status")]
         public int PaymentStatus { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "point_id_start")]
         public int PointIdStart { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "point_id_end")]
         public int PointIdEnd { get; set; }
 
-        [Required]
+        [JsonRequired]
         [JsonProperty(PropertyName = "order_items")]
         public IList<OrderItemReq> OrderItemLists { get; set; }
 

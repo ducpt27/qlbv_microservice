@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using VeXe.Dto.Request.Car;
-using VeXe.DTO.Request.Car;
+using VeXe.Dto.Request.User;
 
 namespace VeXe.Controller
 {
-    public class CarController : BaseController
+    public class UserController : BaseController
     {
         [HttpGet]
         [Authorize]
         public async Task<ActionResult> GetList()
         {
-            var vm = await Mediator.Send(new CarsFilterReq());
+            var vm = await Mediator.Send(new UsersFilterReq());
             return Ok(vm);
         }
 
@@ -21,30 +20,16 @@ namespace VeXe.Controller
         [Route("{id}")]
         public async Task<ActionResult> GetOne(int id)
         {
-            var vm = await Mediator.Send(new GetCarReq()
+            var vm = await Mediator.Send(new GetUserReq()
             {
-                Id = id,
-                OriginId = 0
-            });
-            return Ok(vm);
-        }
-
-        [HttpGet]
-        [Authorize]
-        [Route("origin/{id}")]
-        public async Task<ActionResult> GetOrigin(int id)
-        {
-            var vm = await Mediator.Send(new GetCarReq()
-            {
-                Id = 0,
-                OriginId = id
+                Id = id
             });
             return Ok(vm);
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<ActionResult> AddOne([FromBody] AddCarReq req)
+        public async Task<ActionResult> AddOne([FromBody] AddUserReq req)
         {
             var vm = await Mediator.Send(req);
             return Ok(vm);
@@ -53,7 +38,7 @@ namespace VeXe.Controller
         [HttpPut]
         [Authorize]
         [Route("{id}")]
-        public async Task<ActionResult> EditOne(int id, [FromBody] EditCarReq req)
+        public async Task<ActionResult> EditOne(int id, [FromBody] EditUserReq req)
         {
             req.Id = id;
             var vm = await Mediator.Send(req);

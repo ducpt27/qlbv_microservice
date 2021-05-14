@@ -10,7 +10,7 @@ namespace VeXe.DTO
     public class PointDto : IMapFrom<Point>
     {
         [JsonProperty(PropertyName = "id")]
-        public int RouteId { get; set; }
+        public int Id { get; set; }
         [JsonProperty(PropertyName = "origin_id")]
         public int OriginId { get; set; }
         [JsonProperty(PropertyName = "name")]
