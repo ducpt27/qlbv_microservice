@@ -43,6 +43,9 @@ namespace VeXe.DTO
         [JsonProperty(PropertyName = "drive_points")]
         public IList<DrivePointDto> DrivePoints { get; set; }
 
+        [JsonProperty(PropertyName = "order_items")]
+        public IList<OrderItemDto> OrderItems { get; set; }
+
         [JsonProperty(PropertyName = "car")]
         public CarDto Car { get; set; }
 

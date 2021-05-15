@@ -76,6 +76,15 @@ namespace VeXe.DTO.Request.DriveSchedule
                     await _context.DriveSchedules.AddAsync(driveSchedule);
                     await _context.SaveChangesAsync(cancellationToken);
 
+
+                    var car = await _context.Cars
+                    .FindAsync(request.CarId);
+                    if (car == null)
+                    {
+                        throw new NotFoundException(nameof(Car), request.CarId);
+                    }
+                    driveSchedule.TotalChairsRemain = car.TotalChairs;
+
                     if (request.DrivePrices != null && request.DrivePrices.Count > 0)
                     {
                         foreach (var item in request.DrivePrices)

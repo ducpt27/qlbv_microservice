@@ -83,6 +83,16 @@ namespace VeXe.DTO.Request.Order
                     await _context.Orders.AddAsync(order, cancellationToken);
                     await _context.SaveChangesAsync(cancellationToken);
 
+                    var driveSchedule = await _context.DriveSchedules
+                    .FindAsync(request.DriveScheduleId);
+                    if (driveSchedule == null)
+                    {
+                        throw new NotFoundException(nameof(DriveSchedule), request.DriveScheduleId);
+                    }
+                    driveSchedule.TotalChairsRemain = driveSchedule.TotalChairsRemain - 1;
+                    await _context.SaveChangesAsync(cancellationToken);
+
+
                     var totalPrice = Decimal.Zero;
                     if (request.OrderItemLists == null || request.OrderItemLists.Count <= 0)
                     {
