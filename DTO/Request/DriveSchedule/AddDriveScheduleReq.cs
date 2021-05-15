@@ -91,9 +91,9 @@ namespace VeXe.DTO.Request.DriveSchedule
                         }
                     }
 
-                    if (request.DriveTime != null && request.DriveTime.Count > 0)
+                    if (request.DrivePoints != null && request.DrivePoints.Count > 0)
                     {
-                        foreach (var item in request.DriveTime)
+                        foreach (var item in request.DrivePoints)
                         {
                             var drivePoint = new DrivePoint
                             {
