@@ -7,7 +7,7 @@ using VeXe.Domain;
 
 namespace VeXe.DTO
 {
-    public class DriveTimeDto : IMapFrom<DrivePoint>
+    public class DrivePointDto : IMapFrom<DrivePoint>
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace VeXe.DTO
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<DrivePoint, DriveTimeDto>()
+            profile.CreateMap<DrivePoint, DrivePointDto>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id))
                 .ForMember(x => x.TimeStart,
                     opt => opt.MapFrom(src => (src.TimeStart).ToString(CultureInfo.InvariantCulture)));

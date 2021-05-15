@@ -102,7 +102,7 @@ namespace VeXe.DTO.Request.Order
                                 OrderId = order.Id,
                                 DriveScheduleId = order.DriveScheduleId
                             };
-                            await _context.OrderItems.AddAsync(orderItem);
+                            await _context.OrderItems.AddAsync(orderItem, cancellationToken);
                         }
                     }
 

@@ -40,11 +40,11 @@ namespace VeXe.DTO.Request.DriveSchedule
         [JsonRequired]
         public int Status { get; set; }
 
-        [JsonProperty(PropertyName = "drive_point")]
+        [JsonProperty(PropertyName = "drive_prices")]
         public IList<DrivePriceDto> DrivePrices { get; set; }
 
-        [JsonProperty(PropertyName = "drive_time")]
-        public IList<DriveTimeDto> DriveTime { get; set; }
+        [JsonProperty(PropertyName = "drive_points")]
+        public IList<DrivePointDto> DrivePoints { get; set; }
 
         public class AddDriveScheduleHandler : IRequestHandler<AddDriveScheduleReq, DriveScheduleDto>
         {

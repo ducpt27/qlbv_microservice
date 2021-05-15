@@ -27,7 +27,7 @@ namespace VeXe.DTO.Request.Point
             {
                 var carDtos = await _context.Points
                     .ProjectTo<PointDto>(_mapper.ConfigurationProvider)
-                    .Where(e => e.Status != 2)
+                    //.Where(e => e.Status != 2)
                     .ToListAsync(cancellationToken);
                 return carDtos;
             }

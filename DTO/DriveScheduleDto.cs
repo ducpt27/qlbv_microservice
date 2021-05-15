@@ -38,12 +38,11 @@ namespace VeXe.DTO
         [JsonProperty(PropertyName = "modified_on")]
         public string ModifiedOn { get; set; }
 
-        [JsonProperty(PropertyName = "drive_point")]
+        [JsonProperty(PropertyName = "drive_prices")]
         public IList<DrivePriceDto> DrivePrices { get; set; }
-        [JsonProperty(PropertyName = "drive_time")]
-        public IList<DriveTimeDto> DriveTimes { get; set; }
-        [JsonProperty(PropertyName = "order_items")]
-        public IList<OrderItemDto> OrderItems { get; set; }
+        [JsonProperty(PropertyName = "drive_points")]
+        public IList<DrivePointDto> DrivePoints { get; set; }
+
         [JsonProperty(PropertyName = "car")]
         public CarDto Car { get; set; }
 
